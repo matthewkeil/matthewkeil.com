@@ -3,9 +3,9 @@ import App from "./App.vue";
 import { sync } from "vuex-router-sync";
 import {
   configureVuetify,
-  getRouter,
+  getApolloProvider,
   getStore,
-  getApolloProvider
+  getRouter
 } from "@/core";
 
 Vue.config.productionTip = false;
@@ -13,14 +13,14 @@ Vue.config.productionTip = false;
 const buildApp = () => {
   configureVuetify();
   const apolloProvider = getApolloProvider();
-  const router = getRouter();
   const store = getStore();
+  const router = getRouter();
   sync(store, router);
 
   return new Vue({
     apolloProvider,
-    router,
     store,
+    router,
     render: h => h(App)
   });
 };
