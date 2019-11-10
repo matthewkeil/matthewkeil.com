@@ -28,6 +28,17 @@ const processArgv = () => {
     const { deployCert } = processArgv();
 
     if (deployCert) { // add certificate information
+        console.log(`
+>>> CREATING SSL CERT
+
+Creating stack with SSL certificate, ensure you have setup your name servers to point to route53 already.
+
+In the cloudformation logs > events tab you will see the content of the DNS record you will need to create
+in order for the certificate to be issued.  Once you see that,  enter the information into a CNAME record
+and then wait for the stack to finish updating.
+
+>>>
+`);
         (coreTemplate.Resources as any).Certificate = Certificate;
         (coreTemplate.Outputs as any).Certificate = {
             Description: `SSL Certificate covering *.${CONFIG.ROOT_DOMAIN}`,

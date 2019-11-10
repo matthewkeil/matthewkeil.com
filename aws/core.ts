@@ -1,12 +1,14 @@
-import { default as CF, Fn } from 'cloudform';
+import { Fn } from 'cloudform';
 import { CONFIG } from "../CONFIG";
+import { camelCaseDomainName } from '../bin';
+
 import { HostedZone } from './route53/HostedZone';
 import { ApiGatewayAccount } from "./apiGateway/ApiGatewayAccount";
 import { ApiGatewayPolicy } from "./apiGateway/ApiGatewayPolicy";
 import { ApiGatewayRole } from "./apiGateway/ApiGatewayRole";
 
 export const coreTemplate = {
-  Description: 'matthewkeil-core',
+  Description: `${camelCaseDomainName(CONFIG.ROOT_DOMAIN)}-core`,
   Parameters: {
     RootDomain: {
       Description: 'Root domain at which the system is hosted.',
