@@ -1,20 +1,24 @@
 import { default as CF, Fn } from 'cloudform';
+import { CONFIG } from "../CONFIG";
 import { HostedZone } from './route53/HostedZone';
-import { Certificate } from './certificateManager/Certificate'
+import { ApiGatewayAccount } from "./apiGateway/ApiGatewayAccount";
+import { ApiGatewayPolicy } from "./apiGateway/ApiGatewayPolicy";
+import { ApiGatewayRole } from "./apiGateway/ApiGatewayRole";
 
-
-export default CF({
-  Description: 'passninja-core-master-dns',
+export const coreTemplate = {
+  Description: 'matthewkeil-core',
   Parameters: {
     RootDomain: {
       Description: 'Root domain at which the system is hosted.',
       Type: 'String',
-      Default: process.env.ROOT_DOMAIN
+      Default: CONFIG.ROOT_DOMAIN
     }
   },
   Resources: {
-    HostedZone,
-    Certificate
+    ApiGatewayAccount,
+    ApiGatewayPolicy,
+    ApiGatewayRole,
+    HostedZone
   },
   Outputs: {
     RootDomain: {
@@ -23,19 +27,14 @@ export default CF({
       Export: { Name: 'RootDomain' }
     },
     HostedZoneId: {
-      Description: `HostedZoneId for ${process.env.ROOT_DOMAIN}`,
+      Description: `HostedZoneId for ${CONFIG.ROOT_DOMAIN}`,
       Value: Fn.Ref('HostedZone'),
       Export: { Name: 'HostedZoneId' }
     },
     HostedZoneNameServers: {
-      Description: `Domain Name Servers for ${process.env.ROOT_DOMAIN}`,
+      Description: `Domain Name Servers for ${CONFIG.ROOT_DOMAIN}`,
       Value: Fn.Join(', ', Fn.GetAtt('HostedZone', 'NameServers')),
       Export: { Name: 'HostedZoneNameServers' }
-    },
-    Certificate: {
-      Description: `SSL Certificate covering *.${process.env.ROOT_DOMAIN}`,
-      Value: Fn.Ref('Certificate'),
-      Export: { Name: 'Certificate' }
     }
   }
-});
+};

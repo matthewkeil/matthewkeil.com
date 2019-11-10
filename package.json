@@ -4,6 +4,7 @@
   "description": "## Project setup ``` npm install ```",
   "main": "index.js",
   "devDependencies": {
+    "@octokit/rest": "^16.34.1",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "aws-sdk": "^2.568.0",
@@ -19,7 +20,8 @@
   },
   "dependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ts": "node_modules/.bin/ts-node",
+    "deploy": "npm run ts -- bin/deploy"
   },
   "keywords": [],
   "author": "",
