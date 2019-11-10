@@ -1,4 +1,5 @@
 import { CloudFront, Fn } from 'cloudform'
+import { config } from '../../../config';
 /**
  * 
  * Fn.Ref('OriginAccessIdentity') returns access identity, such as E15MNIMTCFKK4C.
@@ -13,6 +14,7 @@ export const OriginAccessIdentity = new CloudFront.CloudFrontOriginAccessIdentit
             `origin access identity for `,
             Fn.Ref("SubDomain"),
             ".",
-            Fn.ImportValue("RootDomain")])
+            config.ROOT_DOMAIN
+        ])
     }
 });

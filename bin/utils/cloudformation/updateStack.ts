@@ -1,11 +1,6 @@
-import AWS from 'aws-sdk';
-import { CONFIG } from '../../../CONFIG';
+import { config } from '../../../config';
 
-const CF = new AWS.CloudFormation({
-    region: CONFIG.REGION,
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
+const { CF } = config;
 
 export const updateStack = async (params: AWS.CloudFormation.UpdateStackInput) => {
     console.log(`updating stack ${params.StackName} through cloud formation`);

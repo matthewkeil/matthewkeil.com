@@ -1,10 +1,10 @@
 require("dotenv").config();
 
 import CF, { Fn } from "cloudform";
-import { handleStackCreateAndUpdate } from "./utils";
+import { handleStackCreateAndUpdate, pascalCaseDomainName } from "./utils";
 import { coreTemplate } from "../aws/core";
 import { Certificate } from '../aws/certificateManager/Certificate';
-import { CONFIG } from "../CONFIG";
+import { config } from "../config";
 
 /**
  *
@@ -12,20 +12,13 @@ import { CONFIG } from "../CONFIG";
  *
  */
 const processArgv = () => {
+    return 'core'
+}
+
+const deployCore = async () => {
     const noCert = process.argv.find(arg => arg.includes('noCert') || arg.includes('nocert'))
     const deployCert = !!noCert ? false : true;
-    return { deployCert };
-};
-
-/**
- *
- * IIFE for async and we're off!!
- *
- */
-(async () => {
     const StackName = coreTemplate.Description;
-
-    const { deployCert } = processArgv();
 
     if (deployCert) { // add certificate information
         console.log(`
@@ -41,14 +34,13 @@ and then wait for the stack to finish updating.
 `);
         (coreTemplate.Resources as any).Certificate = Certificate;
         (coreTemplate.Outputs as any).Certificate = {
-            Description: `SSL Certificate covering *.${CONFIG.ROOT_DOMAIN}`,
+            Description: `SSL Certificate covering *.${config.ROOT_DOMAIN}`,
             Value: Fn.Ref('Certificate'),
-            Export: { Name: 'Certificate' }
+            Export: { Name: `${pascalCaseDomainName(config.ROOT_DOMAIN)}Certificate` }
         };
     }
 
     const TemplateBody = CF(coreTemplate);
-
     const params: AWS.CloudFormation.CreateStackInput = {
         StackName,
         TemplateBody,
@@ -56,4 +48,26 @@ and then wait for the stack to finish updating.
     };
 
     await handleStackCreateAndUpdate(params);
+};
+
+/**
+ *
+ * IIFE for async and we're off!!
+ *
+ */
+(async () => {
+    const stack = processArgv();
+
+    switch (stack) {
+        case 'core':
+            await deployCore();
+            break;
+        case 'client':
+            break;
+        case 'server':
+            break;
+        default:
+            const message = `${stack} is not a valid stack name`
+            throw new Error(message)
+    }
 })();

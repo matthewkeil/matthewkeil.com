@@ -1,13 +1,15 @@
 import { CloudFront, Fn } from "cloudform";
+import { config } from "../../../config"
+import { pascalCaseDomainName } from "../../../bin";
 
 export const Distribution = new CloudFront.Distribution({
     DistributionConfig: {
-        Aliases: [Fn.Join(".", [Fn.Ref("SubDomain"), Fn.ImportValue("RootDomain")])],
+        Aliases: [Fn.Join(".", [Fn.Ref("SubDomain"), config.ROOT_DOMAIN])],
         Comment: Fn.Join('', [
             'cloudfront distribution for ',
             Fn.Ref("SubDomain"),
             ".",
-            Fn.ImportValue("RootDomain")
+            config.ROOT_DOMAIN
         ]),
         CustomErrorResponses: [{
             ErrorCachingMinTTL: 60,
@@ -46,7 +48,7 @@ export const Distribution = new CloudFront.Distribution({
         }],
         PriceClass: 'PriceClass_100', // PriceClass_100 | PriceClass_200 | PriceClass_All
         ViewerCertificate: {
-            AcmCertificateArn: Fn.ImportValue("Certificate"),
+            AcmCertificateArn: Fn.ImportValue(`${pascalCaseDomainName(config.ROOT_DOMAIN)}Certificate`),
             MinimumProtocolVersion: 'TLSv1.1_2016',
             SslSupportMethod: 'sni-only'
         }

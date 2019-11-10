@@ -1,4 +1,6 @@
-import { default as CF, Fn } from "cloudform";
+import CF from "cloudform";
+import { config } from "../../config";
+
 import { Bucket } from './s3/Bucket';
 import { BucketPolicy } from './s3/BucketPolicy';
 import { OriginAccessIdentity } from './cloudfront/OriginAccessIdentity'
@@ -26,11 +28,16 @@ export default ({ repo, branch }: { repo: string, branch: string }) => {
     };
 
     if (branch === 'master') {
-        (template.Resources.Distribution.Properties.DistributionConfig.Aliases as any).push(Fn.ImportValue("RootDomain"));
+        (template.Resources.Distribution.Properties.DistributionConfig.Aliases as any).push(config.ROOT_DOMAIN);
         (template.Resources as any).RootRecordSet = Object.assign(
             {},
             RecordSet,
-            { Properties: { ...(RecordSet.Properties), Name: Fn.ImportValue("RootDomain") } }
+            {
+                Properties: {
+                    ...RecordSet.Properties,
+                    Name: config.ROOT_DOMAIN
+                }
+            }
         );
     }
 
