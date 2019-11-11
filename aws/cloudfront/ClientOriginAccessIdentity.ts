@@ -1,5 +1,5 @@
 import { CloudFront, Fn } from 'cloudform'
-import { config } from '../../../config';
+import { config } from '../../config';
 /**
  * 
  * Fn.Ref('OriginAccessIdentity') returns access identity, such as E15MNIMTCFKK4C.
@@ -8,7 +8,7 @@ import { config } from '../../../config';
  * 
  */
 
-export const OriginAccessIdentity = new CloudFront.CloudFrontOriginAccessIdentity({
+export const ClientOriginAccessIdentity = new CloudFront.CloudFrontOriginAccessIdentity({
     CloudFrontOriginAccessIdentityConfig: {
         Comment: Fn.Join('', [
             `origin access identity for `,

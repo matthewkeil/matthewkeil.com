@@ -1,8 +1,8 @@
 import { CloudFront, Fn } from "cloudform";
-import { config } from "../../../config"
-import { pascalCaseDomainName } from "../../../bin";
+import { config } from "../../config"
+import { pascalCaseDomainName } from "../../bin";
 
-export const Distribution = new CloudFront.Distribution({
+export const ClientDistribution = new CloudFront.Distribution({
     DistributionConfig: {
         Aliases: [Fn.Join(".", [Fn.Ref("SubDomain"), config.ROOT_DOMAIN])],
         Comment: Fn.Join('', [
@@ -41,9 +41,9 @@ export const Distribution = new CloudFront.Distribution({
         // },
         Origins: [{
             Id: 's3Origin',
-            DomainName: Fn.GetAtt('Bucket', 'DomainName'),
+            DomainName: Fn.GetAtt('ClientBucket', 'DomainName'),
             S3OriginConfig: {
-                OriginAccessIdentity: Fn.Join('/', ['origin-access-identity/cloudfront', Fn.Ref('OriginAccessIdentity')])
+                OriginAccessIdentity: Fn.Join('/', ['origin-access-identity/cloudfront', Fn.Ref('ClientOriginAccessIdentity')])
             }
         }],
         PriceClass: 'PriceClass_100', // PriceClass_100 | PriceClass_200 | PriceClass_All
@@ -53,4 +53,4 @@ export const Distribution = new CloudFront.Distribution({
             SslSupportMethod: 'sni-only'
         }
     }
-}).dependsOn(["Bucket", "OriginAccessIdentity"]);
+}).dependsOn(["ClientBucket", "ClientOriginAccessIdentity"]);

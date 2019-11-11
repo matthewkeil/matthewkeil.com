@@ -1,7 +1,7 @@
 import { S3, Fn } from "cloudform";
 
-export const BucketPolicy = new S3.BucketPolicy({
-    Bucket: Fn.Ref("Bucket"),
+export const ClientBucketPolicy = new S3.BucketPolicy({
+    Bucket: Fn.Ref("ClientBucket"),
     PolicyDocument: {
         Version: "2012-10-17",
         Statement: [
@@ -9,11 +9,11 @@ export const BucketPolicy = new S3.BucketPolicy({
                 Sid: "Allow CloudFront read access",
                 Effect: "Allow",
                 Action: "s3:GetObject",
-                Resource: Fn.Join("", [Fn.GetAtt("Bucket", "Arn"), "/*"]),
+                Resource: Fn.Join("", [Fn.GetAtt("ClientBucket", "Arn"), "/*"]),
                 Principal: {
-                    CanonicalUser: Fn.GetAtt('OriginAccessIdentity', 'S3CanonicalUserId')
+                    CanonicalUser: Fn.GetAtt('ClientOriginAccessIdentity', 'S3CanonicalUserId')
                 }
             }
         ]
     }
-}).dependsOn("OriginAccessIdentity");
+}).dependsOn("ClientOriginAccessIdentity");

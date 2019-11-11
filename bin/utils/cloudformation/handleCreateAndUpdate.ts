@@ -4,6 +4,8 @@ import { getStackStatus } from "./getStatus";
 import { createStack } from "./createStack";
 import { updateStack } from "./updateStack";
 import { deleteStack } from "./deleteStack";
+import { getStackEvents } from "./getStackEvents";
+import { createCertRecordSet } from "../route53/createCertRecordSet";
 
 export const handleStackCreateAndUpdate = async (params: AWS.CloudFormation.CreateStackInput | AWS.CloudFormation.UpdateStackInput) => {
     /**
@@ -16,11 +18,42 @@ export const handleStackCreateAndUpdate = async (params: AWS.CloudFormation.Crea
      */
     const status = await getStackStatus(params);
 
+    let events = [];
+
+    const interval = setInterval(async () => {
+        const fullList = await getStackEvents(params);
+
+        if (events.length !== fullList.length) {
+            console.table(fullList)
+            events = fullList;
+        }
+
+        const certCreationEvent = fullList.find(event => {
+            if (event.ResourceType === 'AWS::CertificateManager::Certificate' &&
+                (event.StatusReason || "").includes('Content of DNS Record')) {
+                return true
+            }
+        });
+
+        if (certCreationEvent) {
+            const dnsRecord = certCreationEvent.StatusReason.split(': ');
+            const recordSetName = dnsRecord[2].split(',')[0];
+            const recordSetValue = dnsRecord[4].substr(0, dnsRecord[4].length - 1);
+
+            console.log(`found request for SSL RecordSet creation at\n${recordSetName}\nfor validation by\n${recordSetValue}\n`);
+
+            await createCertRecordSet({ StackName: params.StackName, recordSetName, recordSetValue });
+
+            console.log('successfully created SSL RecordSet for DNS validation');
+        }
+    }, 2000);
+
     switch (status) {
         case undefined:
             // no status means stack doesn't exist
             console.log(`${params.StackName} doest not exist, creating it`);
-            return await createStack(params);
+            await createStack(params);
+            break;
         case StackStatus.ROLLBACK_COMPLETE:
         case StackStatus.ROLLBACK_FAILED:
         case StackStatus.UPDATE_ROLLBACK_FAILED:
@@ -30,9 +63,13 @@ export const handleStackCreateAndUpdate = async (params: AWS.CloudFormation.Crea
             await deleteStack(params);
 
             console.log("delete complete. rebuilding stack");
-            return await createStack(params);
+            await createStack(params);
+            break;
         default:
             // cases where ready for update
-            return await updateStack(params);
+            await updateStack(params);
+            break;
     }
+
+    clearInterval(interval)
 };

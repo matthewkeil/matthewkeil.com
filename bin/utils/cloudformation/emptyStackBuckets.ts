@@ -3,8 +3,10 @@ import { config } from '../../../config';
 
 const { CF } = config;
 
-export const emptyStackBuckets = async ({ StackName }: AWS.CloudFormation.DeleteStackInput) => {
-    console.log(`looking for artifacts and cache buckets for ${StackName}`);
+export const emptyStackBuckets = async ({
+    StackName
+}: AWS.CloudFormation.DeleteStackInput) => {
+    console.log(`looking for s3 buckets to empty in stack ${StackName}`);
 
     const response: any = await CF.listStackResources({ StackName }).promise();
 
@@ -16,7 +18,7 @@ export const emptyStackBuckets = async ({ StackName }: AWS.CloudFormation.Delete
         `stack has buckets named ${bucketPhysicalResourceIds.join(", ")}`
     );
 
-    bucketPhysicalResourceIds.forEach(
-        async Bucket => await emptyBucket({ Bucket })
-    );
+    await Promise.all(bucketPhysicalResourceIds.map(Bucket => {
+        return emptyBucket({ Bucket })
+    }));
 };

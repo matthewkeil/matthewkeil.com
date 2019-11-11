@@ -1,9 +1,19 @@
 import { config } from '../../../config';
+import { emptyStackBuckets } from './emptyStackBuckets';
 
 const { CF } = config;
 
-export const deleteStack = async ({ StackName }: AWS.CloudFormation.DeleteStackInput) => {
+interface DeleteStackParams {
+    StackName: string;
+    emptyBuckets?: boolean;
+}
+
+export const deleteStack = async ({ StackName, emptyBuckets }: DeleteStackParams) => {
     console.log(`deleting stack ${StackName} through cloud formation`);
+
+    if (emptyBuckets) {
+        await emptyStackBuckets({ StackName });
+    }
 
     const response = await CF.deleteStack({ StackName }).promise();
 
