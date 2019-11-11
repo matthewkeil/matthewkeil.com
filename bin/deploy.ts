@@ -1,4 +1,4 @@
-import { deployCore } from './deployCore';
+import { deployCore } from "./deployCore";
 import { deployClient } from "./deployClient";
 
 /**
@@ -10,9 +10,11 @@ import { deployClient } from "./deployClient";
     const findStack = process.argv.find(arg => {
         const ARG = arg.toLowerCase();
 
-        if (ARG.includes('core') ||
-            ARG.includes('server') ||
-            ARG.includes('client')) {
+        if (
+            ARG.includes("core") ||
+            ARG.includes("server") ||
+            ARG.includes("client")
+        ) {
             return true;
         }
     });
@@ -20,16 +22,16 @@ import { deployClient } from "./deployClient";
     const stack = !!findStack ? findStack.toLowerCase() : process.argv[2];
 
     switch (stack) {
-        case 'core':
+        case "core":
             await deployCore();
             break;
-        case 'client':
+        case "client":
             await deployClient();
             break;
-        case 'server':
+        case "server":
             break;
         default:
-            const message = `${stack} is not a valid stack name`
-            throw new Error(message)
+            const message = `${stack} is not a valid stack name`;
+            throw new Error(message);
     }
 })();

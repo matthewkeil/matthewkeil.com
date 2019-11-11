@@ -4,14 +4,17 @@ import CF, { Fn } from "cloudform";
 import { handleStackCreateAndUpdate, pascalCaseDomainName } from "./utils";
 import { config } from "../config";
 import { coreTemplate } from "../aws/core";
-import { Certificate } from '../aws/certificateManager/Certificate';
+import { Certificate } from "../aws/certificateManager/Certificate";
 
 export const deployCore = async () => {
-    const noCert = process.argv.find(arg => arg.toLowerCase().includes('nocert'))
+    const noCert = process.argv.find(arg =>
+        arg.toLowerCase().includes("nocert")
+    );
     const deployCert = !!noCert ? false : true;
     const StackName = coreTemplate.Description;
 
-    if (deployCert) { // add certificate information
+    if (deployCert) {
+        // add certificate information
         console.log(`
 >>> CREATING SSL CERT
 
@@ -26,8 +29,10 @@ and then wait for the stack to finish updating.
         (coreTemplate.Resources as any).Certificate = Certificate;
         (coreTemplate.Outputs as any).Certificate = {
             Description: `SSL Certificate covering *.${config.ROOT_DOMAIN}`,
-            Value: Fn.Ref('Certificate'),
-            Export: { Name: `${pascalCaseDomainName(config.ROOT_DOMAIN)}Certificate` }
+            Value: Fn.Ref("Certificate"),
+            Export: {
+                Name: `${pascalCaseDomainName(config.ROOT_DOMAIN)}Certificate`
+            }
         };
     }
 

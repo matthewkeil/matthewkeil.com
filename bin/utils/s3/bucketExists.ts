@@ -1,4 +1,4 @@
-import { config } from '../../../config';
+import { config } from "../../../config";
 
 const { S3 } = config;
 
@@ -6,7 +6,7 @@ export const bucketExists = async ({ Bucket }: { Bucket: string }) => {
     const list = await S3.listBuckets().promise();
 
     if (list.Buckets) {
-        let bucket = list.Buckets.find(bucket => {
+        const bucket = list.Buckets.find(bucket => {
             if (bucket.Name) {
                 return bucket.Name.includes(Bucket);
             }

@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import fs from 'fs';
+import fs from "fs";
 import {
     exec,
     createCacheInvalidation,
@@ -12,8 +12,8 @@ import {
     pascalCaseDomainName,
     getAbsolutePathFromRootRelativePath,
     uploadDirectory
-} from './utils';
-import { config } from '../config';
+} from "./utils";
+import { config } from "../config";
 import { clientTemplate } from "../aws/client";
 
 export const deployClient = async () => {
@@ -21,14 +21,17 @@ export const deployClient = async () => {
     console.log(`deploying current git branch: ${branch}`);
 
     let rebuild = false;
-    if (process.argv.find(arg => arg.includes('build'))) {
+    if (process.argv.find(arg => arg.includes("build"))) {
         rebuild = true;
     }
 
     let buildPromise: Promise<void | string> = Promise.resolve();
-    if (rebuild || !fs.existsSync(getAbsolutePathFromRootRelativePath('client/dist'))) {
-        console.log('rebuilding client repo using "npm run build -- prod"')
-        buildPromise = exec('cd client && npm run build -- prod');
+    if (
+        rebuild ||
+        !fs.existsSync(getAbsolutePathFromRootRelativePath("client/dist"))
+    ) {
+        console.log('rebuilding client repo using "npm run build -- prod"');
+        buildPromise = exec("cd client && npm run build -- prod");
     }
 
     // make sure bucket exists, if not build stack with bucket and routing
@@ -55,7 +58,7 @@ export const deployClient = async () => {
 
     await Promise.all([bucketPromise, buildPromise]);
 
-    await uploadDirectory({ Bucket, localPath: 'client/dist' });
+    await uploadDirectory({ Bucket, localPath: "client/dist" });
 
-    await createCacheInvalidation({ Bucket })
+    await createCacheInvalidation({ Bucket });
 };

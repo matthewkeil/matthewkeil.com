@@ -1,5 +1,5 @@
 import { emptyBucket } from "../s3/emptyBucket";
-import { config } from '../../../config';
+import { config } from "../../../config";
 
 const { CF } = config;
 
@@ -18,7 +18,9 @@ export const emptyStackBuckets = async ({
         `stack has buckets named ${bucketPhysicalResourceIds.join(", ")}`
     );
 
-    await Promise.all(bucketPhysicalResourceIds.map(Bucket => {
-        return emptyBucket({ Bucket })
-    }));
+    await Promise.all(
+        bucketPhysicalResourceIds.map(Bucket => {
+            return emptyBucket({ Bucket });
+        })
+    );
 };

@@ -1,8 +1,14 @@
-import { config } from '../../../config';
+import { config } from "../../../config";
 
 const { S3 } = config;
 
-export const createBucketWithFolders = async ({ Bucket, folders }: { Bucket: string, folders?: string[] }) => {
+export const createBucketWithFolders = async ({
+    Bucket,
+    folders
+}: {
+    Bucket: string;
+    folders?: string[];
+}) => {
     await S3.createBucket({
         Bucket
     }).promise();

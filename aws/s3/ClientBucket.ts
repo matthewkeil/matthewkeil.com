@@ -3,16 +3,18 @@ import { config } from "../../config";
 
 export const ClientBucket = new S3.Bucket({
     BucketName: Fn.Join(".", [Fn.Ref("SubDomain"), config.ROOT_DOMAIN]),
-    AccessControl: 'PublicRead',
+    AccessControl: "PublicRead",
     WebsiteConfiguration: {
-        ErrorDocument: 'index.html',
-        IndexDocument: 'index.html'
+        ErrorDocument: "index.html",
+        IndexDocument: "index.html"
     },
     CorsConfiguration: {
-        CorsRules: [{
-            AllowedHeaders: ['*'],
-            AllowedMethods: ["GET", "HEAD"],
-            AllowedOrigins: ['*']
-        }]
+        CorsRules: [
+            {
+                AllowedHeaders: ["*"],
+                AllowedMethods: ["GET", "HEAD"],
+                AllowedOrigins: ["*"]
+            }
+        ]
     }
 });

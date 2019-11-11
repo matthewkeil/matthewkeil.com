@@ -1,8 +1,12 @@
-import { config } from '../../../config';
+import { config } from "../../../config";
 
 const { CF } = config;
 
-export const getStackStatus = async ({ StackName }: { StackName: string }): Promise<string | void> => {
+export const getStackStatus = async ({
+    StackName
+}: {
+    StackName: string;
+}): Promise<string | void> => {
     try {
         const response = await CF.describeStacks({ StackName }).promise();
 

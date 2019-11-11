@@ -18,11 +18,12 @@ export const uploadDirectory = async ({
     // for the recursive walkDirectory function and the leading '/'
     // will be removed from the final objcet Prefix so a blank diretory
     // is not created.
-    const keyBase = uploadPath === '/' || !uploadPath
-        ? '/'
-        : uploadPath.startsWith('/')
+    const keyBase =
+        uploadPath === "/" || !uploadPath
+            ? "/"
+            : uploadPath.startsWith("/")
             ? uploadPath
-            : '/'.concat(uploadPath);
+            : "/".concat(uploadPath);
 
     await walkDirectory({ Bucket, path, keyBase });
 

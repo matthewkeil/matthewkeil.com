@@ -1,8 +1,10 @@
-import { config } from '../../../config';
+import { config } from "../../../config";
 
 const { CF } = config;
 
-export const createStack = async (params: AWS.CloudFormation.CreateStackInput) => {
+export const createStack = async (
+    params: AWS.CloudFormation.CreateStackInput
+) => {
     console.log(`creating stack ${params.StackName} through cloud formation`);
 
     const response = await CF.createStack(params).promise();

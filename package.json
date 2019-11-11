@@ -23,7 +23,9 @@
   "dependencies": {},
   "scripts": {
     "ts": "node_modules/.bin/ts-node",
-    "deploy": "npm run ts -- bin/deploy"
+    "deploy": "npm run ts -- bin/deploy",
+    "lint": "node_modules/.bin/eslint",
+    "lint:core": "npm run lint -- --ext .ts aws/ bin/ --fix"
   },
   "keywords": [],
   "author": "",

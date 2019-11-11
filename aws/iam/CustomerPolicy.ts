@@ -1,23 +1,23 @@
-import { IAM, Fn } from 'cloudform';
+import { IAM, Fn } from "cloudform";
 
 export const CustomerPolicy = new IAM.ManagedPolicy({
-  ManagedPolicyName: 'passninja-customer-policy',
-  Roles: [Fn.Ref('CustomerRole')],
-  PolicyDocument: {
-    Version: '2012-10-17',
-    Statement: [
-      {
-        Effect: 'Allow',
-        Action: '*',
-        Resource: '*'
-        //     'iot:ListPrincipalThings',
-        //     'iot:Connect',
-        //     'iot:Publish',
-        //     'iot:Subscribe',
-        //     'iot:Receive',
-      }
-    ]
-  }
+    ManagedPolicyName: "passninja-customer-policy",
+    Roles: [Fn.Ref("CustomerRole")],
+    PolicyDocument: {
+        Version: "2012-10-17",
+        Statement: [
+            {
+                Effect: "Allow",
+                Action: "*",
+                Resource: "*"
+                //     'iot:ListPrincipalThings',
+                //     'iot:Connect',
+                //     'iot:Publish',
+                //     'iot:Subscribe',
+                //     'iot:Receive',
+            }
+        ]
+    }
 });
 
 // {

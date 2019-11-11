@@ -1,22 +1,28 @@
 import CF from "cloudform";
 import { config } from "../config";
-import { pascalCaseDomainName } from "../bin";
 
-import { ClientBucket } from './s3/ClientBucket';
-import { ClientBucketPolicy } from './s3/ClientBucketPolicy';
-import { ClientOriginAccessIdentity } from './cloudfront/ClientOriginAccessIdentity'
-import { ClientDistribution } from './cloudfront/ClientDistribution';
-import { ClientRecordSet } from './route53/ClientRecordSet';
+import { ClientBucket } from "./s3/ClientBucket";
+import { ClientBucketPolicy } from "./s3/ClientBucketPolicy";
+import { ClientOriginAccessIdentity } from "./cloudfront/ClientOriginAccessIdentity";
+import { ClientDistribution } from "./cloudfront/ClientDistribution";
+import { ClientRecordSet } from "./route53/ClientRecordSet";
 
-export const clientTemplate = ({ branch, StackName }: { branch: string, StackName: string }) => {
+export const clientTemplate = ({
+    branch,
+    StackName
+}: {
+    branch: string;
+    StackName: string;
+}) => {
     const template = {
         AWSTemplateFormatVersion: "2010-09-09",
         Description: StackName,
         Parameters: {
             SubDomain: {
-                Description: "Sub-domain prefix to add to dns ${SubDomain}.${RootDomain}",
+                Description:
+                    "Sub-domain prefix to add to dns ${SubDomain}.${RootDomain}",
                 Type: "String",
-                Default: branch === 'master' ? 'www' : branch
+                Default: branch === "master" ? "www" : branch
             }
         },
         Resources: {
@@ -28,8 +34,9 @@ export const clientTemplate = ({ branch, StackName }: { branch: string, StackNam
         }
     };
 
-    if (branch === 'master') {
-        (template.Resources.ClientDistribution.Properties.DistributionConfig.Aliases as any).push(config.ROOT_DOMAIN);
+    if (branch === "master") {
+        (template.Resources.ClientDistribution.Properties.DistributionConfig
+            .Aliases as any).push(config.ROOT_DOMAIN);
         (template.Resources as any).ClientRootRecordSet = Object.assign(
             {},
             ClientRecordSet,
@@ -43,4 +50,4 @@ export const clientTemplate = ({ branch, StackName }: { branch: string, StackNam
     }
 
     return CF(template);
-}
+};
