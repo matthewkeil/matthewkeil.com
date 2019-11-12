@@ -25,7 +25,7 @@ export const handleStackCreateAndUpdate = async (
     let events = [];
 
     const interval = setInterval(async () => {
-        const fullList = await getStackEvents(params);
+        const fullList = await getStackEvents({ StackName: params.StackName });
 
         if (events.length !== fullList.length) {
             console.table(fullList);

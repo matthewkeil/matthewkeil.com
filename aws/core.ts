@@ -8,7 +8,7 @@ import { ApiGatewayPolicy } from "./apiGateway/ApiGatewayPolicy";
 import { ApiGatewayRole } from "./apiGateway/ApiGatewayRole";
 
 export const coreTemplate = {
-    Description: `${pascalCaseDomainName(config.ROOT_DOMAIN)}-core`,
+    Description: `core-${pascalCaseDomainName(config.ROOT_DOMAIN)}`,
     Parameters: {
         RootDomain: {
             Description: "Root domain at which the system is hosted.",

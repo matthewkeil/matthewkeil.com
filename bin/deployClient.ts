@@ -31,7 +31,7 @@ export const deployClient = async () => {
         !fs.existsSync(getAbsolutePathFromRootRelativePath("client/dist"))
     ) {
         console.log('rebuilding client repo using "npm run build -- prod"');
-        buildPromise = exec("cd client && npm run build -- prod");
+        buildPromise = exec("cd client && export NODE_ENV=production && npm run build");
     }
 
     // make sure bucket exists, if not build stack with bucket and routing
