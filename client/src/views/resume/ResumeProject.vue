@@ -9,11 +9,13 @@
                     </h3>
                     <h5>{{ description }}</h5>
                     <ul class="list-with-bullets">
-                        <li v-for="(skill, index) in skills" :key="index">{{ skill }}</li>
+                        <li v-for="(skill, index) in skills" :key="index">
+                            {{ skill }}
+                        </li>
                     </ul>
                 </div>
                 <ul class="stack">
-                    <li v-for="({src, name}, index) of stack" :key="index">
+                    <li v-for="({ src, name }, index) of stack" :key="index">
                         <div>
                             <img :src="src" :alt="name" />
                             <p>{{ name }}</p>
@@ -25,8 +27,7 @@
     </article>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";

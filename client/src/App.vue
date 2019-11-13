@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Home />
+        <resume />
     </div>
 </template>
 
@@ -27,7 +27,11 @@
 }
 </style>
 
-<script>
-import Resume from "./views/Resume.vue";
-export default {};
+<script lang="ts">
+import Resume from "./views/resume/Resume.vue";
+export default {
+    components: {
+        Resume
+    }
+};
 </script>

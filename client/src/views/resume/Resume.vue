@@ -9,13 +9,17 @@
     </div>
 </template>
 
-<script>
-import ResumeHeader from "@/components/resume/ResumeHeader.vue";
+<script lang="ts">
+import ResumeHeader from "./ResumeHeader.vue";
+import ResumeSummary from "./ResumeSummary.vue";
+import ResumeProjects from "./ResumeProjects.vue";
 
 export default {
-    name: "Resume",
+    name: "resume",
     components: {
-        ResumeHeader
+        ResumeHeader,
+        ResumeSummary,
+        ResumeProjects
     }
 };
 </script>

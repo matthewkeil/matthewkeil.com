@@ -1,7 +1,8 @@
 <template>
     <section>
         <resume-project
-            v-for="({hero, hostedAt, title, description, skills, stack}, index) of projects"
+            v-for="({ hero, hostedAt, title, description, skills, stack },
+            index) of projects"
             :key="index"
             :hero="hero"
             :hostedAt="hostedAt"
@@ -13,10 +14,9 @@
     </section>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
 
-<script>
+<script lang="ts">
 import ResumeProject from "./ResumeProject.vue";
 
 export default {
@@ -25,7 +25,7 @@ export default {
         ResumeProject
     },
     data: () => {
-        projects: [
+        [
             {
                 hero: {
                     src: "assets/muncher.png",

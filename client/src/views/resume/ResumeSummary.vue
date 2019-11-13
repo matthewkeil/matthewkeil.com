@@ -15,10 +15,9 @@
     </section>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
 
-<script>
+<script lang="ts">
 export default {
     name: "ResumeSummary"
 };
