@@ -6,7 +6,7 @@ import {
   getApolloProvider,
   getStore,
   getRouter
-} from "@/core";
+} from "no_compile";
 
 Vue.config.productionTip = false;
 

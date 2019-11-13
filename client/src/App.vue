@@ -1,10 +1,6 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
-        <router-view />
+        <Home />
     </div>
 </template>
 
@@ -30,3 +26,8 @@
     }
 }
 </style>
+
+<script>
+import Resume from "./views/Resume.vue";
+export default {};
+</script>
