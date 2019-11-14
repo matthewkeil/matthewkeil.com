@@ -2,19 +2,22 @@ require("dotenv").config();
 
 import fs from "fs";
 import {
-    exec,
     createCacheInvalidation,
-    getLocalGitBranch,
-    getDomaintName,
     bucketExists,
     emptyBucket,
     handleStackCreateAndUpdate,
-    pascalCaseDomainName,
-    getAbsolutePathFromRootRelativePath,
     uploadDirectory
+} from "./aws";
+import {
+    exec,
+    getLocalGitBranch,
+    getDomaintName,
+    pascalCaseDomainName,
+    getAbsolutePathFromRootRelativePath
 } from "./utils";
 import { config } from "../config";
 import { clientTemplate } from "../aws/client";
+import { getClientBuildCommand } from "./utils/getClientBuildCommand";
 
 export const deployClient = async () => {
     const branch = getLocalGitBranch();
@@ -30,8 +33,11 @@ export const deployClient = async () => {
         rebuild ||
         !fs.existsSync(getAbsolutePathFromRootRelativePath("client/dist"))
     ) {
-        console.log('rebuilding client repo using "npm run build -- prod"');
-        buildPromise = exec("cd client && export NODE_ENV=production && npm run build");
+        const command = getClientBuildCommand();
+        console.log(`rebuilding client repo using "${command}"`);
+        buildPromise = exec(
+            `cd client && export NODE_ENV=production && ${command}`
+        );
     }
 
     // make sure bucket exists, if not build stack with bucket and routing

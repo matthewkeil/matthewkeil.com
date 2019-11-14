@@ -1,4 +1,4 @@
-import { getAbsolutePathFromRootRelativePath } from "../helpers";
+import { getAbsolutePathFromRootRelativePath } from "../../utils";
 import { walkDirectory } from "./walkDirectory";
 
 interface UploadDirectoryParams {

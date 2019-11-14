@@ -23,7 +23,23 @@ export const createCertRecordSet = async ({
         resource => resource.ResourceType === "AWS::Route53::HostedZone"
     );
 
-    return await route53
+    const { ResourceRecordSets } = await route53
+        .listResourceRecordSets({
+            HostedZoneId,
+            StartRecordName: recordSetName,
+            StartRecordType: "CNAME"
+        })
+        .promise();
+
+    if (!!ResourceRecordSets.length) {
+        return;
+    }
+
+    console.log(
+        `found request for SSL RecordSet creation at\n${recordSetName}\nfor validation by\n${recordSetValue}\n`
+    );
+
+    await route53
         .changeResourceRecordSets({
             HostedZoneId,
             ChangeBatch: {
@@ -46,4 +62,6 @@ export const createCertRecordSet = async ({
             }
         })
         .promise();
+
+    console.log("successfully created SSL RecordSet for DNS validation");
 };
