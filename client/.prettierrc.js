@@ -3,6 +3,5 @@ module.exports = {
     quoteProps: "preserve",
     semi: true,
     useTabs: false,
-    tabWidth: 4,
-    printWidth: 80
+    tabWidth: 4
 };

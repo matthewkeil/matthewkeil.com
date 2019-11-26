@@ -1,20 +1,37 @@
 <template>
     <section>
         <resume-project
-            v-for="({ hero, hostedAt, title, description, skills, stack },
-            index) of projects"
+            id="projects"
+            v-for="(project, index) in this.projects"
+            :project="project"
             :key="index"
-            :hero="hero"
-            :hostedAt="hostedAt"
-            :title="title"
-            :description="description"
-            :skills="skills"
-            :stack="stack"
         />
     </section>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+#projects article {
+    padding-top: 2rem;
+    padding-left: 0.5rem;
+}
+
+#projects article:first-of-type {
+    padding-top: 0.5rem;
+}
+
+#projects h3 {
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+#projects h5 {
+    padding-bottom: 0.3rem;
+}
+
+#projects a {
+    text-decoration: underline;
+}
+</style>
 
 <script lang="ts">
 import ResumeProject from "./ResumeProject.vue";
@@ -24,11 +41,11 @@ export default {
     components: {
         ResumeProject
     },
-    data: () => {
-        [
+    data: () => ({
+        projects: [
             {
                 hero: {
-                    src: "assets/muncher.png",
+                    src: "/muncher.png",
                     alt: "number noshers logo"
                 },
                 hostedAt: "http://noshers.matthewkeil.com",
@@ -41,32 +58,32 @@ export default {
                 ],
                 stack: [
                     {
-                        src: "/assets/technologies/html.png",
+                        src: "/technologies/html.png",
                         name: "HTML"
                     },
                     {
-                        src: "/assets/technologies/css.png",
+                        src: "/technologies/css.png",
                         name: "CSS"
                     },
                     {
-                        src: "/assets/technologies/javascript.png",
+                        src: "/technologies/javascript.svg",
                         name: "JavaScript"
                     },
                     {
-                        src: "/assets/technologies/jquery.png",
+                        src: "/technologies/jquery.png",
                         name: "jQuery"
                     },
                     {
-                        src: "/assets/technologies/webpack.png",
+                        src: "/technologies/webpack.png",
                         name: "Webpack"
                     },
                     {
-                        src: "/assets/technologies/google.png",
+                        src: "/technologies/google.png",
                         name: "GCP"
                     }
                 ]
             }
-        ];
-    }
+        ]
+    })
 };
 </script>
