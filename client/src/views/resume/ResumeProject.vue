@@ -24,11 +24,11 @@
                 </div>
                 <ul class="stack">
                     <li
-                        v-for="({ src, name }, index) in this.project.stack"
+                        v-for="(name, index) in this.project.stack"
                         :key="index"
                     >
                         <div>
-                            <img :src="src" :alt="name" />
+                            <img :src="srcFromName(name)" :alt="name" />
                             <p>{{ name }}</p>
                         </div>
                     </li>
@@ -38,7 +38,7 @@
     </article>
 </template>
 
-<style lang="scss">
+<style>
 .project-container {
     display: flex;
     flex-direction: row;
@@ -90,22 +90,22 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { IResumeProject, Technology } from "./projects";
+import htmlSource from "../../assets/technologies/html.png";
 
 @Component
 export default class ResumeProject extends Vue {
-    @Prop() private project!: {
-        title: string;
-        description: string;
-        hostedAt: string;
-        hero: {
-            src: string;
-            alt: string;
-        };
-        skills: string[];
-        stack: {
-            scr: string;
-            name: string;
-        }[];
-    };
+    @Prop() private project!: IResumeProject;
+
+    public srcFromName(name: Technology) {
+        switch (name) {
+            case Technology.HTML:
+                return htmlSource;
+            default:
+                return `/technologies/${name
+                    .toLowerCase()
+                    .replace(" ", "-")}.png`;
+        }
+    }
 }
 </script>

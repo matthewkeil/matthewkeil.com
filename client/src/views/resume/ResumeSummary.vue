@@ -15,10 +15,11 @@
     </section>
 </template>
 
-<style lang="scss"></style>
+<style></style>
 
 <script lang="ts">
-export default {
-    name: "ResumeSummary"
-};
+import { Component, Prop, Vue } from "vue-property-decorator";
+
+@Component
+export default class ResumeSummary extends Vue {}
 </script>

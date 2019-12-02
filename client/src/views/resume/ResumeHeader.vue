@@ -25,7 +25,16 @@
     </header>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+@import "./resumeStyles";
+
+h2 {
+    color: $accentColor;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-variant-caps: small-caps;
+}
+
 header {
     width: 100%;
     padding-bottom: 0.5rem;
@@ -39,11 +48,11 @@ header > h1 {
     line-height: 0.8;
 }
 
-header > h2 {
-    /* font-size: 1.9rem; */
-    line-height: 1;
-    padding-bottom: 0.2rem !important;
-}
+// header > h2 {
+//     /* font-size: 1.9rem; */
+//     line-height: 1;
+//     padding-bottom: 0.2rem !important;
+// }
 
 header > div {
     display: flex;
@@ -53,6 +62,7 @@ header > div {
 }
 
 header > div > * {
+    text-align: center;
     padding-left: 2rem;
 }
 

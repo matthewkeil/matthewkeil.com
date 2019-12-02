@@ -1,10 +1,8 @@
 <template>
-    <div id="app">
-        <resume />
-    </div>
+    <Resume />
 </template>
 
-<style lang="scss">
+<style>
 :root {
     font-size: 16px;
 }
@@ -142,10 +140,13 @@ table {
 </style>
 
 <script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
 import Resume from "./views/resume/Resume.vue";
-export default {
+
+@Component({
     components: {
         Resume
     }
-};
+})
+export default class App extends Vue {}
 </script>

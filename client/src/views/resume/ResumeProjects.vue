@@ -1,15 +1,16 @@
 <template>
     <section>
+        <h2>Projects</h2>
         <resume-project
-            id="projects"
-            v-for="(project, index) in this.projects"
+            class="project"
+            v-for="(project, key) in this.projects"
             :project="project"
-            :key="index"
+            :key="key"
         />
     </section>
 </template>
 
-<style lang="scss">
+<style>
 #projects article {
     padding-top: 2rem;
     padding-left: 0.5rem;
@@ -34,56 +35,16 @@
 </style>
 
 <script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeProject from "./ResumeProject.vue";
+import { IResumeProject, projects } from "./projects";
 
-export default {
-    name: "ResumeProjects",
+@Component({
     components: {
         ResumeProject
-    },
-    data: () => ({
-        projects: [
-            {
-                hero: {
-                    src: "/muncher.png",
-                    alt: "number noshers logo"
-                },
-                hostedAt: "http://noshers.matthewkeil.com",
-                title: "Number Noshers",
-                description:
-                    "Open source clone of the original number munchers game.",
-                skills: [
-                    "Managing listener clean-up and memory leak detection",
-                    "Custom Webpack configuration"
-                ],
-                stack: [
-                    {
-                        src: "/technologies/html.png",
-                        name: "HTML"
-                    },
-                    {
-                        src: "/technologies/css.png",
-                        name: "CSS"
-                    },
-                    {
-                        src: "/technologies/javascript.svg",
-                        name: "JavaScript"
-                    },
-                    {
-                        src: "/technologies/jquery.png",
-                        name: "jQuery"
-                    },
-                    {
-                        src: "/technologies/webpack.png",
-                        name: "Webpack"
-                    },
-                    {
-                        src: "/technologies/google.png",
-                        name: "GCP"
-                    }
-                ]
-            }
-        ]
-    })
-};
+    }
+})
+export default class ResumeProjects extends Vue {
+    public projects: IResumeProject[] = projects;
+}
 </script>

@@ -5,13 +5,18 @@
             <resume-summary />
             <resume-projects />
         </main>
-        <aside></aside>
+        <aside>
+            <ResumeWorkHistory />
+            <ResumeEducation />
+        </aside>
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "resumeStyles";
+
 h2 {
-    color: rgb(100, 36, 35);
+    color: $accentColor;
     font-weight: bold;
     font-size: 1.7rem;
     font-variant-caps: small-caps;
@@ -80,7 +85,7 @@ aside {
     border-left: 1px solid rgba(22, 32, 73, 0.75);
 }
 
-main > h2,
+main > section > h2,
 aside > h2 {
     border-top: 1px solid rgba(22, 32, 73, 0.75);
 }
@@ -104,16 +109,21 @@ aside > h2:first-of-type {
 </style>
 
 <script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeHeader from "./ResumeHeader.vue";
 import ResumeSummary from "./ResumeSummary.vue";
 import ResumeProjects from "./ResumeProjects.vue";
+import ResumeWorkHistory from "./ResumeWorkHistory.vue";
+import ResumeEducation from "./ResumeEducation.vue";
 
-export default {
-    name: "resume",
+@Component({
     components: {
         ResumeHeader,
         ResumeSummary,
-        ResumeProjects
+        ResumeProjects,
+        ResumeWorkHistory,
+        ResumeEducation
     }
-};
+})
+export default class Resume extends Vue {}
 </script>
