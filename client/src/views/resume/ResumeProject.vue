@@ -38,25 +38,49 @@
     </article>
 </template>
 
-<style>
+<style lang="scss" scoped>
+@import "./resumeStyles";
+
+article {
+    padding-top: 2rem;
+    padding-left: 0.5rem;
+}
+
+article:first-of-type {
+    padding-top: 0.5rem;
+}
+
+h3 {
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+h5 {
+    padding-bottom: 0.3rem;
+}
+
+a {
+    text-decoration: underline;
+}
+
 .project-container {
     display: flex;
     flex-direction: row;
-}
 
-.project-container > div {
-    flex: 1 1 auto;
-}
+    > div {
+        flex: 1 1 auto;
+    }
 
-.project-container > img {
-    max-width: 3rem;
-    max-height: 3rem;
-    margin-right: 1.5rem;
-    margin-top: 0.3rem;
-}
+    > img {
+        max-width: 3rem;
+        max-height: 3rem;
+        margin-right: 1.5rem;
+        margin-top: 0.3rem;
+    }
 
-.project-container li {
-    font-size: 0.8rem;
+    li {
+        font-size: 0.8rem;
+    }
 }
 
 .stack {
@@ -65,26 +89,43 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     padding-top: 0.2rem;
+
+    li {
+        width: 2.3rem;
+        height: 2.2rem;
+        overflow: hidden;
+        margin-left: 0.6rem;
+        margin-top: 0.8rem;
+    }
+
+    img {
+        display: block;
+        height: 24px;
+        margin: 0 auto;
+        margin-bottom: 0.1rem;
+    }
+
+    p {
+        font-size: 0.5rem;
+        text-align: center;
+    }
 }
 
-.stack li {
-    width: 2.3rem;
-    height: 2.2rem;
-    overflow: hidden;
-    margin-left: 0.6rem;
-    margin-top: 0.8rem;
+@media print {
+    a::after {
+        display: inline;
+        content: attr(href);
+        font-size: 0.7rem;
+        padding-left: 0.5rem;
+        text-decoration: none;
+    }
 }
 
-.stack img {
-    display: block;
-    height: 24px;
-    margin: 0 auto;
-    margin-bottom: 0.1rem;
-}
-
-.stack p {
-    font-size: 0.5rem;
-    text-align: center;
+@media screen and (max-width: 480px) {
+    article {
+        padding-left: 0.1rem !important;
+        padding-top: 1.5rem;
+    }
 }
 </style>
 

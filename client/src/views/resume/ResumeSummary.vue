@@ -1,7 +1,7 @@
 <template>
-    <section>
+    <section class="main-section">
         <h2>Summary</h2>
-        <p id="summary">
+        <p class="main-content">
             I am a classically trained engineer and my computer savvy has been a
             huge boon throughout my career. I am passionate about taking it to
             new heights by becoming the best software engineer I can be. I cut
@@ -15,7 +15,18 @@
     </section>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+@import "./resumeStyles";
+p {
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 719px) {
+    p {
+        text-align: center;
+    }
+}
+</style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";

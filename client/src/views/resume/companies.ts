@@ -10,27 +10,27 @@ export interface Company {
 }
 
 export const companies: Company[] = [
-    {
-        name: "Flomio Inc.",
-        roles: [
-            {
-                role: "Lead Full-Stack Developer",
-                date: "",
-                description: "Remotely ",
-                skills: []
-            },
-            {
-                role: "Jr. Full-Stack Developer, Remote",
-                date: "",
-                description: "Remote",
-                skills: [
-                    "Mqtt for communications",
-                    "Rebuild CLI",
-                    "Rebuilt API"
-                ]
-            }
-        ]
-    },
+    // {
+    //     name: "Flomio Inc.",
+    //     roles: [
+    //         {
+    //             role: "Lead Full-Stack Developer",
+    //             date: "",
+    //             description: "Remotely ",
+    //             skills: []
+    //         },
+    //         {
+    //             role: "Jr. Full-Stack Developer, Remote",
+    //             date: "",
+    //             description: "Remote",
+    //             skills: [
+    //                 "Mqtt for communications",
+    //                 "Rebuild CLI",
+    //                 "Rebuilt API"
+    //             ]
+    //         }
+    //     ]
+    // },
     {
         name: "Sabbatical",
         skills: [

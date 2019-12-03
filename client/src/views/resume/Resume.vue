@@ -15,50 +15,16 @@
 <style lang="scss" scoped>
 @import "resumeStyles";
 
-h2 {
-    color: $accentColor;
-    font-weight: bold;
-    font-size: 1.7rem;
-    font-variant-caps: small-caps;
-}
-
-h3 {
-    position: relative;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: rgb(22, 32, 73);
-}
-
-h4 {
-    font-size: 1rem;
-    font-weight: bold;
-    color: rgb(22, 32, 73);
-}
-
-h5 {
-    font-size: 0.95rem;
-    color: rgb(22, 32, 73);
-}
-
-h6 {
-    font-size: 0.8rem;
-}
-
-p {
-    font-size: 1.1rem;
-}
-
 a {
     text-decoration: none;
-}
-
-a:visited,
-a:link,
-a:hover,
-a:active,
-a[href^="mailto"] {
-    color: rgb(15, 36, 62);
-    cursor: pointer;
+    &:visited,
+    &:link,
+    &:hover,
+    &:active,
+    &[href^="mailto"] {
+        color: rgb(15, 36, 62);
+        cursor: pointer;
+    }
 }
 
 .container {
@@ -85,26 +51,85 @@ aside {
     border-left: 1px solid rgba(22, 32, 73, 0.75);
 }
 
-main > section > h2,
-aside > h2 {
-    border-top: 1px solid rgba(22, 32, 73, 0.75);
+@page {
+    size: letter portrait;
+    margin: 0;
 }
 
-aside h2 {
-    padding-left: 1rem;
+@media print {
+    html,
+    body {
+        /* background-color: black; */
+        width: 8.5in;
+        height: 11in;
+    }
+
+    .container {
+        /* width: 8.5in; */
+        /* height: 11in; */
+        padding-left: 0.2in;
+        padding-bottom: 0.2in;
+        padding-right: 0;
+        padding-top: 0;
+        margin: 0 auto;
+    }
+
+    main {
+        padding-top: 0.25in;
+    }
+
+    aside {
+        margin-top: 0.25in;
+        padding-right: 0.25in;
+    }
 }
 
-main > section {
-    padding-bottom: 1.5rem;
-    padding-right: 0.8em;
+@media screen {
+    .container {
+        width: 100vw;
+        margin: 0 auto;
+        max-width: 8.5in;
+    }
+
+    main {
+        padding-top: 2rem;
+        padding-left: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    aside {
+        margin-top: 2rem;
+        padding-right: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
-aside > section {
-    padding-left: 1rem;
+@media screen and (max-width: 719px) {
+    .container {
+        display: block;
+        padding-left: 8vw;
+        padding-right: 8vw;
+    }
+
+    main,
+    aside {
+        padding-left: 0;
+        padding-bottom: 0;
+        border: none;
+        max-width: 100%;
+    }
+
+    aside {
+        margin-top: 0;
+        padding-right: 0;
+    }
 }
 
-aside > h2:first-of-type {
-    padding-top: 0;
+@media screen and (max-width: 480px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 </style>
 

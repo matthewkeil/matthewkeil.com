@@ -1,25 +1,25 @@
 <template>
     <header>
         <h1>Matthew Keil</h1>
-        <h2>Full-Stack Web Developer</h2>
-        <div>
+        <h2>Lead Full-Stack Developer</h2>
+        <div class="row">
             <span>Ft. Lauderdale, FL</span>
             <span>954-734-4691</span>
         </div>
-        <div>
+        <div class="row">
             <a href="https://github.com/matthewkeil">
-                <img src="assets/github.svg" alt="github" height="20px" />
+                <img src="/github.svg" alt="github" height="20px" />
             </a>
             <a href="https://www.linkedin.com/in/matthew-keil">
                 <img
                     style="margin-right: -5px;"
-                    src="assets/linkedin.png"
+                    src="/linkedin.png"
                     alt="LinkedIn"
                     height="20px"
                 />
             </a>
             <a href="mailto:me@matthewkeil.com">
-                <img src="assets/email.png" alt="email" height="20px" />
+                <img src="/email.png" alt="email" height="20px" />
             </a>
         </div>
     </header>
@@ -28,13 +28,6 @@
 <style lang="scss" scoped>
 @import "./resumeStyles";
 
-h2 {
-    color: $accentColor;
-    font-weight: bold;
-    font-size: 1.7rem;
-    font-variant-caps: small-caps;
-}
-
 header {
     width: 100%;
     padding-bottom: 0.5rem;
@@ -42,33 +35,55 @@ header {
     color: rgb(15, 36, 62);
 }
 
-header > h1 {
+h1 {
     font-weight: bold;
     font-size: 3rem;
     line-height: 0.8;
 }
 
-// header > h2 {
-//     /* font-size: 1.9rem; */
-//     line-height: 1;
-//     padding-bottom: 0.2rem !important;
-// }
+h2 {
+    @include header-text;
+    line-height: 1;
+    padding-bottom: 0.2rem;
+}
 
-header > div {
+.row {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-bottom: 0.3rem;
 }
 
-header > div > * {
+.row > * {
     text-align: center;
     padding-left: 2rem;
 }
 
-header > div > *:first-child {
+.row > *:first-child {
     padding-left: 0;
-    /* text-decoration: none; */
+}
+
+@media print {
+    a::after {
+        content: attr(href);
+        display: block;
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding-left: 5vw;
+        padding-right: 5vw;
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
 }
 </style>
 

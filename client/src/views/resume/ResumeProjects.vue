@@ -1,8 +1,8 @@
 <template>
-    <section>
+    <section class="main-section">
         <h2>Projects</h2>
         <resume-project
-            class="project"
+            class="main-content"
             v-for="(project, key) in this.projects"
             :project="project"
             :key="key"
@@ -10,28 +10,8 @@
     </section>
 </template>
 
-<style>
-#projects article {
-    padding-top: 2rem;
-    padding-left: 0.5rem;
-}
-
-#projects article:first-of-type {
-    padding-top: 0.5rem;
-}
-
-#projects h3 {
-    display: inline-block;
-    padding-bottom: 0.3rem;
-}
-
-#projects h5 {
-    padding-bottom: 0.3rem;
-}
-
-#projects a {
-    text-decoration: underline;
-}
+<style lang="scss" scoped>
+@import "./resumeStyles";
 </style>
 
 <script lang="ts">

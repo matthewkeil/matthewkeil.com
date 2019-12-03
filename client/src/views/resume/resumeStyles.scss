@@ -1,2 +1,86 @@
 $mainColor: rgb(22, 32, 73);
 $accentColor: rgb(100, 36, 35);
+
+//
+// what is this??
+//
+aside > h2:first-of-type {
+    padding-top: 0;
+}
+
+@mixin header-text($size: 1.7rem) {
+    color: $accentColor;
+    font-weight: bold;
+    font-size: $size;
+    font-variant-caps: small-caps;
+}
+
+@mixin section-header($offset: 0) {
+    @include header-text;
+    border-top: 1px solid rgba(22, 32, 73, 0.75);
+    padding-left: $offset;
+}
+
+h3 {
+    position: relative;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgb(22, 32, 73);
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(22, 32, 73);
+}
+
+h5 {
+    font-size: 0.95rem;
+    color: rgb(22, 32, 73);
+}
+
+h6 {
+    font-size: 0.8rem;
+}
+
+.main-section {
+    padding-bottom: 1.5rem;
+    h2 {
+        @include section-header;
+    }
+    .main-content {
+        padding-right: 0.8em;
+    }
+}
+
+.aside-section {
+    h2 {
+        @include section-header(1rem);
+    }
+    .aside-content {
+        padding-left: 1rem;
+    }
+}
+
+@media screen and (max-width: 719px) {
+    h2 {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .aside-section {
+        border-left: none;
+        padding-left: 0;
+        h2 {
+            border-left: none;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-section,
+    .aside-section {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+}

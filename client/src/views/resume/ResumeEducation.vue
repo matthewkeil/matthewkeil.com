@@ -1,7 +1,8 @@
 <template>
-    <section class="education">
+    <section class="aside-section">
         <h2>Education</h2>
         <ResumeInstitution
+            class="aside-content"
             v-for="(institution, key) in this.institutions"
             :institution="institution"
             :key="key"
@@ -9,7 +10,9 @@
     </section>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@import "./resumeStyles";
+</style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";

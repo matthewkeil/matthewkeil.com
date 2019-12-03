@@ -1,7 +1,8 @@
 <template>
-    <section class="history">
+    <section class="aside-section">
         <h2>Work History</h2>
         <ResumeCompany
+            class="aside-content"
             v-for="(company, key) in this.companies"
             :company="company"
             :key="key"
@@ -9,7 +10,9 @@
     </section>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+@import "./resumeStyles";
+</style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
