@@ -15,18 +15,6 @@
 <style lang="scss" scoped>
 @import "resumeStyles";
 
-a {
-    text-decoration: none;
-    &:visited,
-    &:link,
-    &:hover,
-    &:active,
-    &[href^="mailto"] {
-        color: rgb(15, 36, 62);
-        cursor: pointer;
-    }
-}
-
 .container {
     background-color: white;
     overflow: hidden;
@@ -34,13 +22,16 @@ a {
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 main {
     height: 100%;
     overflow: hidden;
     max-width: 36rem;
-    margin: 0 auto;
+    margin-right: -1px;
+    border-right: 1px solid rgba(22, 32, 73, 0.75);
 }
 
 aside {
@@ -68,19 +59,10 @@ aside {
         /* width: 8.5in; */
         /* height: 11in; */
         padding-left: 0.2in;
+        padding-right: 0.2in;
         padding-bottom: 0.2in;
-        padding-right: 0;
-        padding-top: 0;
-        margin: 0 auto;
-    }
-
-    main {
         padding-top: 0.25in;
-    }
-
-    aside {
-        margin-top: 0.25in;
-        padding-right: 0.25in;
+        margin: 0 auto;
     }
 }
 
@@ -92,15 +74,11 @@ aside {
     }
 
     main {
-        padding-top: 2rem;
         padding-left: 2rem;
-        padding-bottom: 2rem;
     }
 
     aside {
-        margin-top: 2rem;
         padding-right: 2rem;
-        margin-bottom: 2rem;
     }
 }
 
@@ -137,7 +115,7 @@ aside {
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeHeader from "./ResumeHeader.vue";
 import ResumeSummary from "./ResumeSummary.vue";
-import ResumeProjects from "./ResumeProjects.vue";
+import ResumeProjects from "./projects/ResumeProjects.vue";
 import ResumeWorkHistory from "./ResumeWorkHistory.vue";
 import ResumeEducation from "./ResumeEducation.vue";
 

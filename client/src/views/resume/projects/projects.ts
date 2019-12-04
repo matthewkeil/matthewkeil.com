@@ -1,56 +1,86 @@
 export const enum Technology {
+    JS = "JavaScript",
+    TS = "TS",
+    NODE = "Node",
     HTML = "HTML",
     CSS = "CSS",
-    JS = "JavaScript",
-    TS = "TypeScript",
-    JQUERY = "jQuery",
-    WEBPACK = "Webpack",
+    AWS = "AWS",
     GCP = "GCP",
+    WEBPACK = "Webpack",
+    CRYPTO = "Crypto",
+    IOT = "IOT",
+    FULL_STACK = "Full Stack",
+    ANGULAR = "Angular",
     REACT = "React",
     REDUX = "Redux",
     REDUX_FORM = "Redux Form",
     MATERIAL_UI = "material ui",
     CSS_MODULES = "CSS Modules",
-    NODE = "Node",
     MONGO_DB = "MongoDB",
-    DOCKER = "docker",
-    KUBERNETES = "kubernetes"
+    JQUERY = "jQuery",
+    DOCKER = "Docker",
+    KUBERNETES = "Kubernetes"
 }
 
-export interface IResumeProject {
-    title: string;
-    description: string;
-    hostedAt: string;
+interface BaseRepoInfo {
+    description?: string;
+    skills?: string[];
+    stack?: Technology[];
+}
+
+interface ExtendedInfo {
     hero: {
         src: string;
         alt: string;
     };
-    skills: string[];
-    stack: Technology[];
+    title: string;
+    hostedAt: string;
 }
 
-export const projects: IResumeProject[] = [
+type SingleRepo = BaseRepoInfo & ExtendedInfo;
+
+interface MultiRepo extends ExtendedInfo {
+    skills?: string[];
+    multiRepo: BaseRepoInfo[];
+}
+
+export type Project = SingleRepo | MultiRepo;
+
+export const projects: Project[] = [
     {
         hero: {
             src: "/ninja.png",
             alt: "PassNinja logo"
         },
-        hostedAt: "http://www.passninja.com",
         title: "PassNinja",
-        description: "B2B SaaS for AppleWallet and GPay Passes",
-        skills: [
-            "Ops and devops system and processes to support jr. devs",
-            "Architecture and development of the API and CLI app",
-            "Serverless, micro-service architecture",
-            "Deep understanding of multi-client architecture"
-        ],
-        stack: [
-            Technology.HTML,
-            Technology.CSS,
-            Technology.JS,
-            Technology.JQUERY,
-            Technology.WEBPACK,
-            Technology.GCP
+        hostedAt: "http://www.passninja.com",
+        multiRepo: [
+            {
+                description: "B2B SaaS API for AppleWallet and GPay Passes",
+                skills: ["Serverless, micro-service architecture"],
+                stack: [
+                    Technology.HTML,
+                    Technology.CSS,
+                    Technology.JS,
+                    Technology.GCP
+                ]
+            },
+            {
+                description:
+                    "Node.js Typescript CLI app for scanner and decrypting AppleWallet and GPay Passes",
+                skills: ["Serverless, micro-service architecture"],
+                stack: [
+                    Technology.TS,
+                    Technology.NODE,
+                    Technology.CRYPTO,
+                    Technology.IOT
+                ]
+            },
+            {
+                description:
+                    "Ops and Devops platform for reliably repeatable deployments",
+                skills: ["IaC, DNS, SSL/TLS, Edge-Caching, Work-flow Pipelines"]
+            }
         ]
     },
     {

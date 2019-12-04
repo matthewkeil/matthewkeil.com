@@ -1,23 +1,31 @@
 <template>
     <section class="main-section">
         <h2>Projects</h2>
-        <resume-project
-            class="main-content"
+        <ResumeProject
             v-for="(project, key) in this.projects"
-            :project="project"
             :key="key"
+            class="main-content resume-project"
+            :project="project"
         />
     </section>
 </template>
 
 <style lang="scss" scoped>
-@import "./resumeStyles";
+@import "../resumeStyles";
+
+.resume-project {
+    padding-bottom: 1.3rem;
+}
+
+.resume-project:last-of-type {
+    padding-bottom: 0.7rem;
+}
 </style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeProject from "./ResumeProject.vue";
-import { IResumeProject, projects } from "./projects";
+import { projects } from "./projects";
 
 @Component({
     components: {
@@ -25,6 +33,6 @@ import { IResumeProject, projects } from "./projects";
     }
 })
 export default class ResumeProjects extends Vue {
-    public projects: IResumeProject[] = projects;
+    public projects = projects;
 }
 </script>

@@ -60,7 +60,7 @@ export const companies: Company[] = [
             },
             {
                 role: "Superintendent",
-                date: "1/10 - 4/11",
+                date: "11/10 - 4/11",
                 description: "Renovate Sunset Towers",
                 skills: [
                     "Helped ensure a tight quality control process for on-time delivery and high customer satisfaction"

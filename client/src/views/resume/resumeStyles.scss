@@ -1,13 +1,6 @@
 $mainColor: rgb(22, 32, 73);
 $accentColor: rgb(100, 36, 35);
 
-//
-// what is this??
-//
-aside > h2:first-of-type {
-    padding-top: 0;
-}
-
 @mixin header-text($size: 1.7rem) {
     color: $accentColor;
     font-weight: bold;
@@ -43,8 +36,29 @@ h6 {
     font-size: 0.8rem;
 }
 
+a {
+    text-decoration: none;
+    &:visited,
+    &:link,
+    &:hover,
+    &:active,
+    &[href^="mailto"] {
+        color: rgb(15, 36, 62);
+        cursor: pointer;
+    }
+}
+
+@media print {
+    a::after {
+        display: inline;
+        content: attr(href);
+        font-size: 0.7rem;
+        padding-left: 0.5rem;
+        text-decoration: none;
+    }
+}
+
 .main-section {
-    padding-bottom: 1.5rem;
     h2 {
         @include section-header;
     }
@@ -60,6 +74,28 @@ h6 {
     .aside-content {
         padding-left: 1rem;
     }
+}
+
+.list-with-bullets li {
+    position: relative;
+    display: block;
+    padding-left: 0.6rem;
+    font-size: 0.8rem;
+}
+
+.list-with-bullets li::before {
+    content: "-";
+    position: absolute;
+    left: -0.1rem;
+}
+
+.with-floated-span {
+    display: flex;
+}
+
+.with-floated-span span {
+    text-align: right;
+    flex-grow: 1;
 }
 
 @media screen and (max-width: 719px) {

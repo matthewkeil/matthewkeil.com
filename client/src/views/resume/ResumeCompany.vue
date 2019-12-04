@@ -16,7 +16,7 @@
                 :class="{ 'has-roles': hasRoles }"
             >
                 <h5>{{ role }}</h5>
-                <h6 class="with-floated-date">
+                <h6 class="with-floated-span">
                     {{ description }}
                     <span>{{ date }}</span>
                 </h6>
@@ -64,15 +64,6 @@ li {
         position: absolute;
         left: -0.1rem;
     }
-}
-
-h6.with-floated-date {
-    display: flex;
-}
-
-span {
-    text-align: right;
-    flex-grow: 1;
 }
 </style>
 
