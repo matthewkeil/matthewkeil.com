@@ -1,10 +1,10 @@
 <template>
     <header>
         <h1>Matthew Keil</h1>
-        <h2>Lead Full-Stack Developer</h2>
+        <h2>{{ currentTitle() }}</h2>
         <div class="row">
-            <span>Ft. Lauderdale, FL</span>
-            <span>954-734-4691</span>
+            <span>Miami, FL</span>
+            <span>+1-954-734-4691</span>
         </div>
         <div class="row">
             <a href="https://github.com/matthewkeil">
@@ -69,6 +69,10 @@ h2 {
         display: block;
         font-size: 0.7rem;
     }
+
+    a:last-of-type::after {
+        transform: translate(-0.5rem);
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -88,7 +92,16 @@ h2 {
 </style>
 
 <script lang="ts">
-export default {
-    name: "ResumeHeader"
-};
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { resumeService } from "./resumeService";
+
+@Component
+export default class ResumeHeader extends Vue {
+    currentTitle() {
+        const [currentCompany] = resumeService.companies;
+        return currentCompany.roles
+            ? currentCompany.roles[0].role
+            : currentCompany.name;
+    }
+}
 </script>

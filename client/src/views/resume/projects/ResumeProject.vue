@@ -90,7 +90,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Project, Technology } from "./projects";
+import { Project } from "./Project";
 import ProjectDetails from "./ProjectDetails.vue";
 
 @Component({
@@ -98,14 +98,5 @@ import ProjectDetails from "./ProjectDetails.vue";
 })
 export default class ResumeProject extends Vue {
     @Prop() private project!: Project;
-
-    public srcFromName(name: Technology) {
-        // switch (name) {
-        //     case Technology.HTML:
-        //         return htmlSource;
-        //     default:
-        return `/technologies/${name.toLowerCase().replace(" ", "-")}.png`;
-        // }
-    }
 }
 </script>

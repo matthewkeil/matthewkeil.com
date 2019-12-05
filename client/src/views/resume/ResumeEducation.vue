@@ -17,12 +17,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeInstitution from "./ResumeInstitution.vue";
-import { institutions } from "./institutions";
+import { resumeService } from "./resumeService";
 
 @Component({
     components: { ResumeInstitution }
 })
 export default class ResumeEducation extends Vue {
-    public institutions = institutions;
+    public institutions = resumeService.institutions;
 }
 </script>

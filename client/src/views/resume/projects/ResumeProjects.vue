@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeProject from "./ResumeProject.vue";
-import { projects } from "./projects";
+import { resumeService } from "../resumeService";
 
 @Component({
     components: {
@@ -33,6 +33,6 @@ import { projects } from "./projects";
     }
 })
 export default class ResumeProjects extends Vue {
-    public projects = projects;
+    public projects = resumeService.projects;
 }
 </script>

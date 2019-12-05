@@ -66,7 +66,7 @@ div {
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Technology } from "./projects";
+import { Technology } from "./Technology";
 
 @Component
 export default class ProjectDetails extends Vue {
@@ -79,12 +79,7 @@ export default class ProjectDetails extends Vue {
     }
 
     public srcFromName(name: Technology) {
-        // switch (name) {
-        //     case Technology.HTML:
-        //         return htmlSource;
-        //     default:
         return `/technologies/${name.toLowerCase().replace(" ", "-")}.png`;
-        // }
     }
 }
 </script>

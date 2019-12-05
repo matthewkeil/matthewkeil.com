@@ -18,7 +18,7 @@ div {
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Institution } from "./institutions";
+import { Institution } from "./Institution";
 
 @Component
 export default class ResumeInstitution extends Vue {

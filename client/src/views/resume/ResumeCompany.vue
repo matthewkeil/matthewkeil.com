@@ -69,7 +69,7 @@ li {
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Company } from "./companies";
+import { Company } from "./Company";
 
 @Component
 export default class ResumeCompany extends Vue {
