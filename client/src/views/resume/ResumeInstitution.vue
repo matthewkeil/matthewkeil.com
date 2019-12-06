@@ -9,11 +9,6 @@
 
 <style lang="scss" scoped>
 @import "./resumeStyles";
-
-div {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-}
 </style>
 
 <script lang="ts">

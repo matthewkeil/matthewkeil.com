@@ -9,9 +9,9 @@
             </li>
         </ul>
         <ul v-if="this.stack" class="stack">
-            <li v-for="(name, key) in this.stack" :key="key">
-                <p>{{ name }}</p>
-                <img :src="srcFromName(name)" :alt="name" />
+            <li v-for="(tech, key) in this.stack" :key="key">
+                <p>{{ nameOfTech(tech) }}</p>
+                <img :src="srcForTech(tech)" :alt="name" />
             </li>
         </ul>
     </div>
@@ -19,10 +19,6 @@
 
 <style lang="scss" scoped>
 @import "../resumeStyles";
-
-div {
-    padding-top: 0.3rem;
-}
 
 .skills {
     margin-top: -0.1rem;
@@ -66,7 +62,7 @@ div {
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Technology } from "./Technology";
+import { technologies, Technology } from "./Technology";
 
 @Component
 export default class ProjectDetails extends Vue {
@@ -78,8 +74,12 @@ export default class ProjectDetails extends Vue {
         return this.skills && this.stack;
     }
 
-    public srcFromName(name: Technology) {
-        return `/technologies/${name.toLowerCase().replace(" ", "-")}.png`;
+    public nameOfTech(tech: Technology) {
+        return technologies[tech].name;
+    }
+
+    public srcForTech(tech: Technology) {
+        return technologies[tech].src;
     }
 }
 </script>

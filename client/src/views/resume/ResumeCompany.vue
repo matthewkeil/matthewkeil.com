@@ -1,36 +1,33 @@
 <template>
     <div class="company">
         <h4>{{ this.company.name }}</h4>
-        <div :v-if="hasSkills" :class="{ 'has-skills': hasSkills }">
-            <ul>
-                <li v-for="(skill, key) in this.company.skills" :key="key">
-                    <h6>{{ skill }}</h6>
-                </li>
-            </ul>
-        </div>
-        <div :v-if="hasRoles">
-            <div
+        <ul :v-if="hasSkills" :class="{ 'skills': hasSkills }">
+            <li v-for="(skill, key) in this.company.skills" :key="key">
+                <h6>{{ skill }}</h6>
+            </li>
+        </ul>
+        <ul :v-if="hasRoles" :class="{ 'roles': hasRoles }">
+            <li
                 v-for="({ role, date, description, skills }, key) in this
                     .company.roles"
                 :key="key"
-                :class="{ 'has-roles': hasRoles }"
+                class="role"
             >
                 <h5>{{ role }}</h5>
                 <h6 class="with-floated-span">
                     {{ description }}
                     <span>{{ date }}</span>
                 </h6>
-                <ul :v-if="Array.isArray(skills) && skills.length">
-                    <li
-                        v-for="(skill, key) in skills"
-                        :key="key"
-                        class="bulleted"
-                    >
+                <ul
+                    :v-if="Array.isArray(skills) && skills.length"
+                    class="list-with-bullets"
+                >
+                    <li v-for="(skill, key) in skills" :key="key">
                         {{ skill }}
                     </li>
                 </ul>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -39,30 +36,16 @@
 
 .company {
     position: relative;
-    padding-top: 0.5rem;
-    padding-bottom: 1rem;
-    .has-skills,
-    .has-roles {
-        padding-top: 0.5rem;
+
+    h4 {
+        padding-bottom: 0.1rem;
     }
-}
 
-p {
-    font-size: 0.8rem;
-}
-
-li {
-    font-size: 0.8rem;
-}
-
-.bulleted {
-    position: relative;
-    display: block;
-    padding-left: 0.6rem;
-    &::before {
-        content: "-";
-        position: absolute;
-        left: -0.1rem;
+    .role {
+        padding-bottom: 0.4rem;
+        &:last-of-type {
+            padding-bottom: 0;
+        }
     }
 }
 </style>

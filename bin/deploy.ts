@@ -7,13 +7,13 @@ import { deployClient } from "./deployClient";
  *
  */
 (async () => {
-    const findStack = process.argv.find(arg => {
-        const ARG = arg.toLowerCase();
+    const findStack = process.argv.find(ARG => {
+        const arg = ARG.toLowerCase();
 
         if (
-            ARG.includes("core") ||
-            ARG.includes("server") ||
-            ARG.includes("client")
+            arg.includes("core") ||
+            arg.includes("server") ||
+            arg.includes("client")
         ) {
             return true;
         }

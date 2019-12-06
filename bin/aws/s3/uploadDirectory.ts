@@ -1,5 +1,6 @@
 import { getAbsolutePathFromRootRelativePath } from "../../utils";
 import { walkDirectory } from "./walkDirectory";
+import { emptyBucket } from "./emptyBucket";
 
 interface UploadDirectoryParams {
     localPath: string; // path to upoad, relative to repo root
@@ -13,6 +14,8 @@ export const uploadDirectory = async ({
     Bucket
 }: UploadDirectoryParams) => {
     const path = getAbsolutePathFromRootRelativePath(localPath);
+
+    console.log(path);
 
     // ensure that teh keyBase starts with a '/'. this is necessary
     // for the recursive walkDirectory function and the leading '/'

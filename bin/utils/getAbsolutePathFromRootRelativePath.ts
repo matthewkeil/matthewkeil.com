@@ -7,5 +7,5 @@ export const getAbsolutePathFromRootRelativePath = (
         ? path
         : path.split("/").filter(segment => !!segment);
 
-    return PATH.resolve(__dirname, "..", "..", "..", ...segments);
+    return PATH.resolve(__dirname, "..", "..", ...segments);
 };

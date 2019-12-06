@@ -4,7 +4,7 @@
         <ResumeProject
             v-for="(project, key) in this.projects"
             :key="key"
-            class="main-content resume-project"
+            class="main-content"
             :project="project"
         />
     </section>
@@ -13,12 +13,8 @@
 <style lang="scss" scoped>
 @import "../resumeStyles";
 
-.resume-project {
-    padding-bottom: 1.3rem;
-}
-
-.resume-project:last-of-type {
-    padding-bottom: 0.7rem;
+.main-content:last-of-type {
+    padding-bottom: 1rem;
 }
 </style>
 

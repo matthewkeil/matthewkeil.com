@@ -1,25 +1,20 @@
 <template>
     <header>
         <h1>Matthew Keil</h1>
-        <h2>{{ currentTitle() }}</h2>
+        <h2>{{ currentTitle }}</h2>
         <div class="row">
             <span>Miami, FL</span>
             <span>+1-954-734-4691</span>
         </div>
-        <div class="row">
+        <div class="row socials">
             <a href="https://github.com/matthewkeil">
-                <img src="/github.svg" alt="github" height="20px" />
+                <img :src="githubImage" alt="github" />
             </a>
             <a href="https://www.linkedin.com/in/matthew-keil">
-                <img
-                    style="margin-right: -5px;"
-                    src="/linkedin.png"
-                    alt="LinkedIn"
-                    height="20px"
-                />
+                <img :src="linkedInImage" alt="LinkedIn" />
             </a>
             <a href="mailto:me@matthewkeil.com">
-                <img src="/email.png" alt="email" height="20px" />
+                <img :src="emailImage" alt="email" />
             </a>
         </div>
     </header>
@@ -47,10 +42,20 @@ h2 {
     padding-bottom: 0.2rem;
 }
 
+$image-height: 20px;
+
+img {
+    height: $image-height;
+}
+
 .row {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.row:first-of-type {
     padding-bottom: 0.3rem;
 }
 
@@ -64,14 +69,25 @@ h2 {
 }
 
 @media print {
-    a::after {
-        content: attr(href);
-        display: block;
-        font-size: 0.7rem;
+    .socials > * {
+        flex: 1 1 auto;
+        padding-bottom: 0.3rem;
     }
 
-    a:last-of-type::after {
-        transform: translate(-0.5rem);
+    a {
+        position: relative;
+        &::after {
+            position: absolute;
+            content: attr(href);
+            font-size: 0.65rem;
+            white-space: nowrap;
+            text-decoration: none;
+            transform: translate(-60%, $image-height + 3px);
+        }
+
+        // &:nth-of-type(2)::after {
+        //     transform: translate(-65%, -110%);
+        // }
     }
 }
 
@@ -97,11 +113,23 @@ import { resumeService } from "./resumeService";
 
 @Component
 export default class ResumeHeader extends Vue {
-    currentTitle() {
+    get currentTitle() {
         const [currentCompany] = resumeService.companies;
         return currentCompany.roles
             ? currentCompany.roles[0].role
             : currentCompany.name;
+    }
+
+    get githubImage() {
+        return require("../../assets/resume/github.svg");
+    }
+
+    get linkedInImage() {
+        return require("../../assets/resume/linkedin.png");
+    }
+
+    get emailImage() {
+        return require("../../assets/resume/email.png");
     }
 }
 </script>

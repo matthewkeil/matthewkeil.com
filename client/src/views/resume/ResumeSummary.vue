@@ -19,10 +19,9 @@
 @import "./resumeStyles";
 p {
     font-size: 1.1rem;
-    padding-bottom: 1.5rem;
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 810px) {
     p {
         text-align: center;
     }

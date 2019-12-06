@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-import fs from "fs";
 import {
     createCacheInvalidation,
     bucketExists,
@@ -11,9 +10,8 @@ import {
 import {
     exec,
     getLocalGitBranch,
-    getDomaintName,
+    getDomainName,
     pascalCaseDomainName,
-    getAbsolutePathFromRootRelativePath
 } from "./utils";
 import { config } from "../config";
 import { clientTemplate } from "../aws/client";
@@ -29,26 +27,21 @@ export const deployClient = async () => {
     }
 
     let buildPromise: Promise<void | string> = Promise.resolve();
-    if (
-        rebuild ||
-        !fs.existsSync(getAbsolutePathFromRootRelativePath("client/dist"))
-    ) {
-        const command = getClientBuildCommand();
+    if (rebuild) {
+        const command = await getClientBuildCommand();
         console.log(`rebuilding client repo using "${command}"`);
-        buildPromise = exec(
-            `cd client && export NODE_ENV=production && ${command}`
-        );
+        buildPromise = exec(`cd client && ${command}`);
     }
 
     // make sure bucket exists, if not build stack with bucket and routing
-    const Bucket = getDomaintName({
+    const Bucket = getDomainName({
         branch,
         domain: config.ROOT_DOMAIN
     });
 
     let bucketPromise: Promise<void>;
     if (await bucketExists({ Bucket })) {
-        console.log(`found existing artifacts bucket`);
+        console.log(`found existing artifacts bucket ${Bucket}`);
 
         bucketPromise = emptyBucket({ Bucket });
     } else {

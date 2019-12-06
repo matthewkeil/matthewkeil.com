@@ -82,7 +82,7 @@ aside {
     }
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 810px) {
     .container {
         display: block;
         padding-left: 8vw;

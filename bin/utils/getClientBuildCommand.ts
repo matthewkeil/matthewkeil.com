@@ -1,13 +1,14 @@
 import { getPackageJson } from "./getPackageJson";
 
 export const getClientBuildCommand = async () => {
-    const pkg = await getPackageJson("client");
-    const dependencies = Object.keys(pkg.dependencies || {}).concat(
-        Object.keys(pkg.devDependencies)
-    );
     const framework = new Set<string>();
+    const pkg = await getPackageJson("client");
+    const dependencies = Object.keys({
+        ...(pkg.dependencies || {}),
+        ...(pkg.devDependencies || {})
+    });
 
-    dependencies.forEach(dependency => {
+    for (const dependency of dependencies) {
         if (dependency.includes("@angular/core")) {
             console.log("found angular project in client folder");
             framework.add("angular");
@@ -22,7 +23,7 @@ export const getClientBuildCommand = async () => {
             console.log("found react project in client folder");
             framework.add("react");
         }
-    });
+    }
 
     if (!framework.size || framework.size > 1) {
         !!framework.size
@@ -36,7 +37,7 @@ export const getClientBuildCommand = async () => {
     }
 
     if (framework.has("vue") || framework.has("react")) {
-        return "npm run build";
+        return "NODE_ENV=production npm run build";
     }
 
     if (framework.has("angular")) {

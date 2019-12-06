@@ -23,6 +23,7 @@
                             :description="repo.description"
                             :skills="repo.skills"
                             :stack="repo.stack"
+                            class="details"
                         />
                     </li>
                 </ul>
@@ -32,6 +33,7 @@
                 :description="this.project.description"
                 :skills="this.project.skills"
                 :stack="this.project.stack"
+                class="details"
             />
         </div>
     </div>
@@ -77,6 +79,20 @@
         &:last-of-type {
             padding-bottom: 0;
         }
+    }
+}
+
+.details {
+    padding-top: 0.3rem;
+}
+
+@media print {
+    a::after {
+        display: inline;
+        content: attr(href);
+        font-size: 0.7rem;
+        padding-left: 1rem;
+        text-decoration: none;
     }
 }
 

@@ -6,103 +6,127 @@ import { Company } from "./Company";
 const projects: Project[] = [
     {
         hero: {
-            src: "/ninja.png",
+            src: require("../../assets/resume/pass-ninja.png"),
             alt: "PassNinja logo"
         },
         title: "PassNinja",
         hostedAt: "http://www.passninja.com",
         multiRepo: [
             {
-                description: "B2B SaaS API for AppleWallet and GPay Passes",
-                skills: ["Serverless, micro-service architecture"],
+                description: "CLI Application",
+                skills: [
+                    "Node.js/TypeScript for scanning and decrypting AppleWallet and GPay Passes",
+                    "Implemented NFC scans via PC/SC. OAuth secured communication via Mqtt"
+                ],
                 stack: [
-                    Technology.HTML,
-                    Technology.CSS,
-                    Technology.JS,
-                    Technology.GCP
+                    "NODE",
+                    "TS",
+                    "NFC",
+                    "CRYPTO",
+                    "IOT",
+                    "APPLE_WALLET",
+                    "G_PAY"
                 ]
             },
             {
-                description:
-                    "Node.js Typescript CLI app for scanner and decrypting AppleWallet and GPay Passes",
-                skills: ["Serverless, micro-service architecture"],
+                description: "OPS, Devops, CI/CD and Scripting",
+                skills: [
+                    "Scripting for dev team, service and asset management",
+                    "Cloudformation Expertise for Reliably Repeatable Environments",
+                    "Implemented IaC for Hosting, DNS, SSL/TLS and Work-Flow Pipelines"
+                ],
                 stack: [
-                    Technology.TS,
-                    Technology.NODE,
-                    Technology.CRYPTO,
-                    Technology.IOT
+                    "AWS",
+                    "CLOUDFORMATION",
+                    "ROUTE53",
+                    "CERT_MANAGER",
+                    "CODE_BUILD",
+                    "CODE_PIPELINE",
+                    "COGNITO"
                 ]
             },
             {
-                description:
-                    "Ops and Devops platform for reliably repeatable deployments",
-                skills: ["IaC, DNS, SSL/TLS, Edge-Caching, Work-flow Pipelines"]
+                description: "Serverless API",
+                skills: [
+                    "Architect/Developer of serverless platform",
+                    "b2b SaaS for creating AppleWallet and GPay Passes",
+                    "Built full library for creating apple passes"
+                ],
+                stack: [
+                    "TS",
+                    "NODE",
+                    "API_GATEWAY",
+                    "LAMBDA",
+                    "DYNAMO_DB",
+                    "APPLE_WALLET",
+                    "G_PAY"
+                ]
             }
         ]
     },
     {
         hero: {
-            src: "/nomad-devops.png",
+            src: require("../../assets/resume/nomad-devops.png"),
             alt: "nomad-devops logo"
         },
         hostedAt: "https://github.com/matthewkeil/nomad-devops",
         title: "nomad-devops",
-        description:
-            "Full Ops and Devops platform targeted at startups and digital nomads",
+        description: "Open source, easy-to-use Ops and Devops system",
         skills: [
-            "Managing listener clean-up and memory leak detection",
-            "Custom Webpack configuration"
+            "Minimize cost of deployment for freelancers, small firms and startups",
+            "Features like branch deployments and built-in https"
         ],
-        stack: [Technology.HTML, Technology.CSS, Technology.GCP]
+        stack: [
+            "TS",
+            "NODE",
+            "AWS",
+            "CLOUDFORMATION",
+            "ROUTE53",
+            "CLOUDFRONT",
+            "S3"
+        ]
     },
     {
         hero: {
-            src: "/muncher.png",
+            src: require("../../assets/resume/muncher.png"),
             alt: "number noshers logo"
         },
-        hostedAt: "http://noshers.matthewkeil.com",
+        hostedAt: "https://github.com/matthewkeil/number-noshers",
         title: "Number Noshers",
         description: "Open source clone of the original number munchers game.",
         skills: [
             "Managing listener clean-up and memory leak detection",
             "Custom Webpack configuration"
         ],
-        stack: [
-            Technology.HTML,
-            Technology.CSS,
-            Technology.JS,
-            Technology.JQUERY,
-            Technology.WEBPACK,
-            Technology.GCP
-        ]
-    },
-    {
-        title: "Bougie Haus",
-        description:
-            " Full-Stack React app for researching, aggregating and perfecting recipes",
-        hostedAt: "http://bougie.haus",
-        hero: {
-            src: "bougie-haus.png",
-            alt: "bougie haus logo"
-        },
-        skills: [
-            "Integration of UX/UI during wire-framing to promote smooth user flows",
-            "Oauth and managing SPA risks during auth flow. Mitigating XSS, CRSF, etc...",
-            "Data design theory to avoid user driven duplication"
-        ],
-        stack: [
-            Technology.REACT,
-            Technology.REDUX,
-            Technology.REDUX_FORM,
-            Technology.MATERIAL_UI,
-            Technology.CSS_MODULES,
-            Technology.NODE,
-            Technology.MONGO_DB,
-            Technology.WEBPACK,
-            Technology.DOCKER,
-            Technology.KUBERNETES
-        ]
+        stack: ["HTML", "CSS", "JS", "JQUERY", "WEBPACK", "AWS"]
     }
+    // {
+    //     title: "Bougie Haus",
+    //     description:
+    //         " Full-Stack React app for researching, aggregating and perfecting recipes",
+    //     hostedAt: "http://bougie.haus",
+    //     hero: {
+    //         src: "bougie-haus.png",
+    //         alt: "bougie haus logo"
+    //     },
+    //     skills: [
+    //         "Integration of UX/UI during wire-framing to promote smooth user flows",
+    //         "Oauth and managing SPA risks during auth flow. Mitigating XSS, CRSF, etc...",
+    //         "Data design theory to avoid user driven duplication"
+    //     ],
+    //     stack: [
+    //         "REACT",
+    //         "REDUX",
+    //         // "REDUX_FORM",
+    //         "MATERIAL_UI",
+    //         "CSS_MODULES",
+    //         "NODE",
+    //         "MONGO_DB",
+    //         "WEBPACK",
+    //         "DOCKER",
+    //         "KUBERNETES"
+    //     ]
+    // }
 ];
 
 const institutions: Institution[] = [
