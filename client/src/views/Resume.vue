@@ -13,7 +13,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "resumeStyles";
+@import "@/components/resume/resumeStyles";
 
 .container {
     background-color: white;
@@ -113,11 +113,11 @@ aside {
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import ResumeHeader from "./ResumeHeader.vue";
-import ResumeSummary from "./ResumeSummary.vue";
-import ResumeProjects from "./projects/ResumeProjects.vue";
-import ResumeWorkHistory from "./ResumeWorkHistory.vue";
-import ResumeEducation from "./ResumeEducation.vue";
+import ResumeHeader from "@/components/resume/ResumeHeader.vue";
+import ResumeSummary from "@/components/resume/ResumeSummary.vue";
+import ResumeProjects from "@/components/resume/projects/ResumeProjects.vue";
+import ResumeWorkHistory from "@/components/resume/ResumeWorkHistory.vue";
+import ResumeEducation from "@/components/resume/ResumeEducation.vue";
 
 @Component({
     components: {

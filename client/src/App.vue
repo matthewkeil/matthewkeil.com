@@ -1,5 +1,5 @@
 <template>
-    <Resume />
+    <router-view />
 </template>
 
 <style>
@@ -140,13 +140,8 @@ table {
 </style>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import Resume from "./views/resume/Resume.vue";
+import { Component, Vue } from "vue-property-decorator";
 
-@Component({
-    components: {
-        Resume
-    }
-})
+@Component({})
 export default class App extends Vue {}
 </script>
