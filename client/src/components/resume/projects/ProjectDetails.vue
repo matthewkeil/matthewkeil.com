@@ -11,7 +11,7 @@
         <ul v-if="this.stack" class="stack">
             <li v-for="(tech, key) in this.stack" :key="key">
                 <p>{{ nameOfTech(tech) }}</p>
-                <img :src="srcForTech(tech)" :alt="name" />
+                <img :src="srcForTech(tech)" />
             </li>
         </ul>
     </div>
