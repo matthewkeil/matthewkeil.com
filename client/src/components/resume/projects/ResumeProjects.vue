@@ -1,6 +1,6 @@
 <template>
     <section class="main-section">
-        <h2>Projects</h2>
+        <h2>{{this.title}}</h2>
         <ResumeProject
             v-for="(project, key) in this.projects"
             :key="key"
@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ResumeProject from "./ResumeProject.vue";
-import { resumeService } from "../resumeService";
+import { Project } from "./Project";
 
 @Component({
     components: {
@@ -29,6 +29,7 @@ import { resumeService } from "../resumeService";
     }
 })
 export default class ResumeProjects extends Vue {
-    public projects = resumeService.projects;
+    @Prop() private title!: string;
+    @Prop() private projects!: Project[];
 }
 </script>

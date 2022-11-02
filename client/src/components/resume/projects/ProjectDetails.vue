@@ -58,6 +58,12 @@
 .stack-square {
     max-width: 100px;
 }
+
+// @media print {
+//     .stack {
+//         display: none;
+//     }
+// }
 </style>
 
 <script lang="ts">
