@@ -1,202 +1,245 @@
-const enum Technologies {
-    JS = "JS",
-    TS = "TS",
-    NODE = "NODE",
-    HTML = "HTML",
-    CSS = "CSS",
-    AWS = "AWS",
-    GCP = "GCP",
-    CRYPTO = "CRYPTO",
-    WEBPACK = "WEBPACK",
-    CLOUDFORMATION = "CLOUDFORMATION",
-    ROUTE53 = "ROUTE53",
-    S3 = "S3",
-    COGNITO = "COGNITO",
-    DYNAMO_DB = "DYNAMO_DB",
-    LAMBDA = "LAMBDA",
-    API_GATEWAY = "API_GATEWAY",
-    IOT = "IOT",
-    MQTT = "MQTT",
-    CLOUDFRONT = "CLOUDFRONT",
-    CERT_MANAGER = "CERT_MANAGER",
-    CODE_BUILD = "CODE_BUILD",
-    CODE_PIPELINE = "CODE_PIPELINE",
-    APPLE_WALLET = "APPLE_WALLET",
-    G_PAY = "G_PAY",
-    NFC = "NFC",
-    // CRYPTO = "CRYPTO",
-    // IOT = "IOT",
-    // FULL_STACK = "FULL_STACK",
-    ANGULAR = "ANGULAR",
-    REACT = "REACT",
-    REDUX = "REDUX",
-    // REDUX_FORM = "REDUX_FORM",
-    MATERIAL_UI = "MATERIAL_UI",
-    CSS_MODULES = "CSS_MODULES",
-    MONGO_DB = "MONGO_DB",
-    JQUERY = "JQUERY",
-    DOCKER = "DOCKER",
-    KUBERNETES = "KUBERNETES"
-}
+const techEnums = [
+    "JS",
+    "TS",
+    "NODE",
+    "HTML",
+    "CSS",
+    "SOLIDITY",
+    "IPFS",
+    "ETHEREUM",
+    "POLYGON",
+    "HARDHAT",
+    "ETHERSJS",
+    "AWS",
+    "GCP",
+    "CRYPTO",
+    "WEBPACK",
+    "CLOUDFORMATION",
+    "ROUTE53",
+    "S3",
+    "COGNITO",
+    "DYNAMO_DB",
+    "LAMBDA",
+    "API_GATEWAY",
+    "IOT",
+    "MQTT",
+    "CLOUDFRONT",
+    "CERT_MANAGER",
+    "CODE_BUILD",
+    "CODE_PIPELINE",
+    "APPLE_WALLET",
+    "G_PAY",
+    "NFC",
+    "VPC",
+    "SSO",
+    "CDK",
+    "STENCIL",
+    "ANGULAR",
+    "REACT",
+    "REDUX",
+    // "REDUX_FORM",
+    "MATERIAL_UI",
+    "CSS_MODULES",
+    "MONGO_DB",
+    "JQUERY",
+    "DOCKER",
+    "KUBERNETES",
+    "SHELL"
+] as const;
 
-export const technologies: {
-    [key in Technologies]: {
+export type Technology = typeof techEnums[number];
+
+type Technologies = Record<
+    Technology,
+    {
         name: string;
         src: any;
-    };
-} = {
+    }
+>;
+
+function getTechnologySrc(name: string) {
+    return require(`../../../assets/resume/technologies/${name}`);
+}
+
+export const technologies: Technologies = {
+    ETHEREUM: {
+        name: "Ethereum",
+        src: getTechnologySrc("ethereum.svg")
+    },
+    IPFS: {
+        name: "IPFS",
+        src: getTechnologySrc("ipfs.svg")
+    },
+    POLYGON: {
+        name: "Polygon",
+        src: getTechnologySrc("polygon.svg")
+    },
+    SOLIDITY: {
+        name: "Solidity",
+        src: getTechnologySrc("solidity.svg")
+    },
+    HARDHAT: {
+        name: "HardHat",
+        src: getTechnologySrc("hardhat.png")
+    },
+    ETHERSJS: {
+        name: "Ethers",
+        src: getTechnologySrc("ethersjs.png")
+    },
+    SHELL: {
+        src: getTechnologySrc("shell.jpeg"),
+        name: "Shell"
+    },
+    VPC: {
+        src: getTechnologySrc("vpc.jpeg"),
+        name: "VPC"
+    },
+    SSO: {
+        src: getTechnologySrc("sso.jpeg"),
+        name: "SSO"
+    },
+    CDK: {
+        src: getTechnologySrc("cdk-logo-small.png"),
+        name: "cdk"
+    },
     JS: {
-        src: require("../../../assets/resume/technologies/javascript.svg"),
+        src: getTechnologySrc("javascript.svg"),
         name: "Java Script"
     },
     TS: {
-        src: require("../../../assets/resume/technologies/typescript.png"),
+        src: getTechnologySrc("typescript.png"),
         name: "Type Script"
     },
     NODE: {
-        src: require("../../../assets/resume/technologies/node.svg"),
+        src: getTechnologySrc("node.svg"),
         name: "Node"
     },
     CRYPTO: {
-        src: require("../../../assets/resume/technologies/crypto.png"),
+        src: getTechnologySrc("crypto.png"),
         name: "Crypto"
     },
     AWS: {
-        src: require("../../../assets/resume/technologies/aws.svg"),
+        src: getTechnologySrc("aws.svg"),
         name: "AWS"
     },
     CLOUDFORMATION: {
-        src: require("../../../assets/resume/technologies/cloudformation.svg"),
-        name: "Cloud Formation"
+        src: getTechnologySrc("cloudformation.svg"),
+        name: "CF"
     },
     ROUTE53: {
-        src: require("../../../assets/resume/technologies/route53.svg"),
+        src: getTechnologySrc("route53.svg"),
         name: "Route53"
     },
     CLOUDFRONT: {
-        src: require("../../../assets/resume/technologies/cloudfront.svg"),
+        src: getTechnologySrc("cloudfront.svg"),
         name: "Cloud `Front"
     },
     S3: {
-        src: require("../../../assets/resume/technologies/s3.svg"),
+        src: getTechnologySrc("s3.svg"),
         name: "S3"
     },
     DYNAMO_DB: {
-        src: require("../../../assets/resume/technologies/dynamo-db.svg"),
+        src: getTechnologySrc("dynamo-db.svg"),
         name: "Dynamo DB"
     },
     LAMBDA: {
-        src: require("../../../assets/resume/technologies/lambda.png"),
+        src: getTechnologySrc("lambda.png"),
         name: "Lambda"
     },
     API_GATEWAY: {
-        src: require("../../../assets/resume/technologies/api-gateway.svg"),
+        src: getTechnologySrc("api-gateway.svg"),
         name: "Api Gateway"
     },
     IOT: {
-        src: require("../../../assets/resume/technologies/iot.png"),
+        src: getTechnologySrc("iot.png"),
         name: "IoT"
     },
     CERT_MANAGER: {
-        src: require("../../../assets/resume/technologies/cert-manager.png"),
+        src: getTechnologySrc("cert-manager.png"),
         name: "Cert Manager"
     },
     CODE_BUILD: {
-        src: require("../../../assets/resume/technologies/code-build.png"),
+        src: getTechnologySrc("code-build.png"),
         name: "Code Build"
     },
     CODE_PIPELINE: {
-        src: require("../../../assets/resume/technologies/code-pipeline.png"),
+        src: getTechnologySrc("code-pipeline.png"),
         name: "Code Pipeline"
     },
     COGNITO: {
-        src: require("../../../assets/resume/technologies/cognito.svg"),
+        src: getTechnologySrc("cognito.svg"),
         name: "Cognito"
     },
     APPLE_WALLET: {
-        src: require("../../../assets/resume/technologies/apple-wallet.png"),
+        src: getTechnologySrc("apple-wallet.png"),
         name: "Apple Wallet"
     },
     G_PAY: {
-        src: require("../../../assets/resume/technologies/g-pay.svg"),
+        src: getTechnologySrc("g-pay.svg"),
         name: "Google Pay"
     },
     NFC: {
-        src: require("../../../assets/resume/technologies/nfc.svg"),
+        src: getTechnologySrc("nfc.svg"),
         name: "NFC"
     },
     MQTT: {
-        src: require("../../../assets/resume/technologies/mqtt.png"),
+        src: getTechnologySrc("mqtt.png"),
         name: "MQTT"
     },
     HTML: {
-        src: require("../../../assets/resume/technologies/html.svg"),
+        src: getTechnologySrc("html.svg"),
         name: "HTML"
     },
     CSS: {
-        src: require("../../../assets/resume/technologies/css.svg"),
+        src: getTechnologySrc("css.svg"),
         name: "CSS"
     },
-    // AWS: {
-    //     src: require('../../../assets/resume/technologies/aws.png'),
-    //     name: "AWS"
-    // },
     GCP: {
-        src: require("../../../assets/resume/technologies/gcp.png"),
+        src: getTechnologySrc("gcp.png"),
         name: "GCP"
     },
     WEBPACK: {
-        src: require("../../../assets/resume/technologies/webpack.png"),
+        src: getTechnologySrc("webpack.png"),
         name: "Webpack"
     },
-    // CRYPTO: {
-    //     src: require('../../../assets/resume/technologies/'),
-    //     name: "Crypto"
-    // },
-    // IOT: {
-    //     src: require('../../../assets/resume/technologies/'),
-    //     name: "IOT"
-    // },
-    // jken: {
-    // src: require('../../../assets/resume/technologies/'),
-    //     name: "Full Stack"
-    // },
+    STENCIL: {
+        src: getTechnologySrc("stencil.png"),
+        name: "Stencil"
+    },
     ANGULAR: {
-        src: require("../../../assets/resume/technologies/angular.svg"),
+        src: getTechnologySrc("angular.svg"),
         name: "Angular"
     },
     REACT: {
-        src: require("../../../assets/resume/technologies/react.svg"),
+        src: getTechnologySrc("react.svg"),
         name: "React"
     },
     REDUX: {
-        src: require("../../../assets/resume/technologies/redux.svg"),
+        src: getTechnologySrc("redux.svg"),
         name: "Redux"
     },
     MATERIAL_UI: {
-        src: require("../../../assets/resume/technologies/material-ui.png"),
+        src: getTechnologySrc("material-ui.png"),
         name: "material ui"
     },
     CSS_MODULES: {
-        src: require("../../../assets/resume/technologies/css-modules.png"),
+        src: getTechnologySrc("css-modules.png"),
         name: "CSS Modules"
     },
     MONGO_DB: {
-        src: require("../../../assets/resume/technologies/mongodb.jpg"),
+        src: getTechnologySrc("mongodb.jpg"),
         name: "MongoDB"
     },
     JQUERY: {
-        src: require("../../../assets/resume/technologies/jquery.png"),
+        src: getTechnologySrc("jquery.png"),
         name: "jQuery"
     },
     DOCKER: {
-        src: require("../../../assets/resume/technologies/docker.svg"),
+        src: getTechnologySrc("docker.svg"),
         name: "Docker"
     },
     KUBERNETES: {
-        src: require("../../../assets/resume/technologies/kubernetes.png"),
+        src: getTechnologySrc("kubernetes.png"),
         name: "Kubernetes"
     }
 };
-
-export type Technology = keyof typeof Technologies;
