@@ -34,12 +34,13 @@ h1 {
     font-weight: bold;
     font-size: 3rem;
     line-height: 0.8;
+    padding-bottom: 0.2rem;
 }
 
 h2 {
     @include header-text;
     line-height: 1;
-    padding-bottom: 0.2rem;
+    padding-bottom: 0.3rem;
 }
 
 $image-height: 20px;
@@ -56,7 +57,7 @@ img {
 }
 
 .row:first-of-type {
-    padding-bottom: 0.3rem;
+    padding-bottom: 0.6rem;
 }
 
 .row > * {
