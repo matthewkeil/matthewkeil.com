@@ -1,11 +1,13 @@
 <template>
     <div class="company">
         <h4>{{ this.company.name }}</h4>
+
         <ul :v-if="hasSkills" :class="{ 'skills': hasSkills }">
             <li v-for="(skill, key) in this.company.skills" :key="key">
                 <h6>{{ skill }}</h6>
             </li>
         </ul>
+
         <ul :v-if="hasRoles" :class="{ 'roles': hasRoles }">
             <li
                 v-for="({ role, date, description, skills }, key) in this
@@ -13,11 +15,18 @@
                 :key="key"
                 class="role"
             >
-                <h5>{{ role }}</h5>
-                <h6 class="with-floated-span">
+                <h5 :class="{ 'with-floated-span': !description }">
+                    {{ role }}
+                    <span v-if="!description"
+                        ><h6>{{ date }}</h6></span
+                    >
+                </h5>
+
+                <h6 v-if="description" class="with-floated-span">
                     {{ description }}
                     <span>{{ date }}</span>
                 </h6>
+
                 <ul
                     :v-if="Array.isArray(skills) && skills.length"
                     class="list-with-bullets"
