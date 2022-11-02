@@ -43,6 +43,16 @@
 <style lang="scss" scoped>
 @import "./resumeStyles";
 
+.with-floated-span {
+    display: flex;
+}
+
+.with-floated-span span {
+    text-align: right;
+    flex-grow: 1;
+    align-self: flex-end;
+}
+
 .company {
     position: relative;
 
