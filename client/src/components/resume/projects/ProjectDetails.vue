@@ -10,8 +10,10 @@
         </ul>
         <ul v-if="this.stack" class="stack">
             <li v-for="(tech, key) in this.stack" :key="key">
-                <p>{{ nameOfTech(tech) }}</p>
-                <img :src="srcForTech(tech)" />
+                <a target="_blank" :href="urlForTech(tech)" class="technology">
+                    <p>{{ nameOfTech(tech) }}</p>
+                    <img :src="srcForTech(tech)" />
+                </a>
             </li>
         </ul>
     </div>
@@ -24,22 +26,23 @@
     margin-top: -0.1rem;
 }
 
-.stack {
-    $stack-height: 1.8rem;
+$stack-height: 1.8rem;
 
+.stack {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    height: $stack-height;
     justify-content: flex-start;
-    margin-top: 0.3rem;
+    margin-top: 0.6rem;
     flex-wrap: wrap;
 
-    li {
+    .technology {
         position: relative;
         margin-right: 1rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        width: $stack-height;
     }
 
     img {
@@ -49,21 +52,19 @@
     }
 
     p {
-        writing-mode: vertical-rl;
-        text-orientation: sideways;
         font-size: 0.6em;
+        display: block;
+        text-align: center;
     }
 }
 
-.stack-square {
-    max-width: 100px;
+@media screen and (max-width: 480px) {
+    .stack {
+        .technology {
+            padding-bottom: 0.3rem;
+        }
+    }
 }
-
-// @media print {
-//     .stack {
-//         display: none;
-//     }
-// }
 </style>
 
 <script lang="ts">
@@ -86,6 +87,10 @@ export default class ProjectDetails extends Vue {
 
     public srcForTech(tech: Technology) {
         return technologies[tech].src;
+    }
+
+    public urlForTech(tech: Technology) {
+        return technologies[tech].url;
     }
 }
 </script>

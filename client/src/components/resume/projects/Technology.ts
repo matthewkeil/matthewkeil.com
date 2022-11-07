@@ -37,9 +37,9 @@ const techEnums = [
     "ANGULAR",
     "REACT",
     "REDUX",
-    // "REDUX_FORM",
+    "TERRAFORM",
     "MATERIAL_UI",
-    "CSS_MODULES",
+    // "CSS_MODULES",
     "MONGO_DB",
     "JQUERY",
     "DOCKER",
@@ -54,6 +54,7 @@ type Technologies = Record<
     {
         name: string;
         src: any;
+        url: string;
     }
 >;
 
@@ -64,182 +65,232 @@ function getTechnologySrc(name: string) {
 export const technologies: Technologies = {
     ETHEREUM: {
         name: "Ethereum",
-        src: getTechnologySrc("ethereum.svg")
+        src: getTechnologySrc("ethereum.svg"),
+        url: "https://ethereum.org"
     },
     IPFS: {
         name: "IPFS",
-        src: getTechnologySrc("ipfs.svg")
+        src: getTechnologySrc("ipfs.svg"),
+        url: "https://ipfs.tech"
     },
     POLYGON: {
         name: "Polygon",
-        src: getTechnologySrc("polygon.svg")
+        src: getTechnologySrc("polygon.svg"),
+        url: "https://polygon.technology"
     },
     SOLIDITY: {
         name: "Solidity",
-        src: getTechnologySrc("solidity.svg")
+        src: getTechnologySrc("solidity.svg"),
+        url: "https://docs.soliditylang.org"
     },
     HARDHAT: {
         name: "HardHat",
-        src: getTechnologySrc("hardhat.png")
+        src: getTechnologySrc("hardhat.png"),
+        url: "https://hardhat.org"
     },
     ETHERSJS: {
         name: "Ethers",
-        src: getTechnologySrc("ethersjs.png")
+        src: getTechnologySrc("ethersjs.png"),
+        url: ""
     },
     SHELL: {
+        name: "Shell",
         src: getTechnologySrc("shell.jpeg"),
-        name: "Shell"
+        url: "https://www.gnu.org/software/bash/manual/bashref.html"
     },
     VPC: {
+        name: "VPC",
         src: getTechnologySrc("vpc.jpeg"),
-        name: "VPC"
+        url: "https://docs.aws.amazon.com/vpc"
     },
     SSO: {
+        name: "SSO",
         src: getTechnologySrc("sso.jpeg"),
-        name: "SSO"
+        url: "https://en.wikipedia.org/wiki/Single_sign-on"
+    },
+    TERRAFORM: {
+        name: "Terraform",
+        src: getTechnologySrc("terraform.svg"),
+        url: "https://www.terraform.io"
     },
     CDK: {
+        name: "aws-cdk",
         src: getTechnologySrc("cdk-logo-small.png"),
-        name: "cdk"
+        url: "https://docs.aws.amazon.com/cdk/index.html"
     },
     JS: {
+        name: "Java Script",
         src: getTechnologySrc("javascript.svg"),
-        name: "Java Script"
+        url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
     },
     TS: {
+        name: "Type Script",
         src: getTechnologySrc("typescript.png"),
-        name: "Type Script"
+        url: "https://www.typescriptlang.org"
     },
     NODE: {
+        name: "Node",
         src: getTechnologySrc("node.svg"),
-        name: "Node"
+        url: "https://nodejs.org"
     },
     CRYPTO: {
+        name: "Crypto",
         src: getTechnologySrc("crypto.png"),
-        name: "Crypto"
+        url: "https://en.wikipedia.org/wiki/Cryptography"
     },
     AWS: {
+        name: "AWS",
         src: getTechnologySrc("aws.svg"),
-        name: "AWS"
+        url: "https://aws.amazon.com/"
     },
     CLOUDFORMATION: {
+        name: "Cloud Formation",
         src: getTechnologySrc("cloudformation.svg"),
-        name: "CF"
+        url: "https://aws.amazon.com/cloudformation/"
     },
     ROUTE53: {
+        name: "Route53",
         src: getTechnologySrc("route53.svg"),
-        name: "Route53"
+        url: "https://aws.amazon.com/route53"
     },
     CLOUDFRONT: {
+        name: "Cloud Front",
         src: getTechnologySrc("cloudfront.svg"),
-        name: "Cloud `Front"
+        url: "https://aws.amazon.com/cloudfront"
     },
     S3: {
+        name: "S3",
         src: getTechnologySrc("s3.svg"),
-        name: "S3"
+        url: "https://aws.amazon.com/s3"
     },
     DYNAMO_DB: {
+        name: "Dynamo DB",
         src: getTechnologySrc("dynamo-db.svg"),
-        name: "Dynamo DB"
+        url: "https://aws.amazon.com/dynamodb"
     },
     LAMBDA: {
+        name: "Lambda",
         src: getTechnologySrc("lambda.png"),
-        name: "Lambda"
+        url: "https://aws.amazon.com/lambda"
     },
     API_GATEWAY: {
+        name: "Api Gateway",
         src: getTechnologySrc("api-gateway.svg"),
-        name: "Api Gateway"
+        url: "https://aws.amazon.com/apigateway"
     },
     IOT: {
+        name: "IoT",
         src: getTechnologySrc("iot.png"),
-        name: "IoT"
+        url: "https://aws.amazon.com/iot"
     },
     CERT_MANAGER: {
+        name: "Cert Manager",
         src: getTechnologySrc("cert-manager.png"),
-        name: "Cert Manager"
+        url: "https://aws.amazon.com/certificate-manager"
     },
     CODE_BUILD: {
+        name: "Code Build",
         src: getTechnologySrc("code-build.png"),
-        name: "Code Build"
+        url: "https://aws.amazon.com/codebuild"
     },
     CODE_PIPELINE: {
+        name: "Code Pipeline",
         src: getTechnologySrc("code-pipeline.png"),
-        name: "Code Pipeline"
+        url: "https://aws.amazon.com/codepipeline"
     },
     COGNITO: {
+        name: "Cognito",
         src: getTechnologySrc("cognito.svg"),
-        name: "Cognito"
+        url: "https://aws.amazon.com/cognito"
     },
     APPLE_WALLET: {
+        name: "Apple Wallet",
         src: getTechnologySrc("apple-wallet.png"),
-        name: "Apple Wallet"
+        url: "https://developer.apple.com/wallet"
     },
     G_PAY: {
+        name: "Google Pay",
         src: getTechnologySrc("g-pay.svg"),
-        name: "Google Pay"
+        url: "https://developers.google.com/pay/api"
     },
     NFC: {
+        name: "NFC",
         src: getTechnologySrc("nfc.svg"),
-        name: "NFC"
+        url: "https://nfc-forum.org/build/specifications"
     },
     MQTT: {
+        name: "MQTT",
         src: getTechnologySrc("mqtt.png"),
-        name: "MQTT"
+        url: "https://mqtt.org/mqtt-specification/"
     },
     HTML: {
+        name: "HTML",
         src: getTechnologySrc("html.svg"),
-        name: "HTML"
+        url: "https://developer.mozilla.org/en-US/docs/Web/HTML"
     },
     CSS: {
+        name: "CSS",
         src: getTechnologySrc("css.svg"),
-        name: "CSS"
+        url: "https://developer.mozilla.org/en-US/docs/Web/CSS"
     },
     GCP: {
+        name: "GCP",
         src: getTechnologySrc("gcp.png"),
-        name: "GCP"
+        url: "https://cloud.google.com/docs"
     },
     WEBPACK: {
+        name: "Webpack",
         src: getTechnologySrc("webpack.png"),
-        name: "Webpack"
+        url: "https://webpack.js.org"
     },
     STENCIL: {
+        name: "Stencil",
         src: getTechnologySrc("stencil.png"),
-        name: "Stencil"
+        url: "https://stenciljs.com/docs/introduction"
     },
     ANGULAR: {
+        name: "Angular",
         src: getTechnologySrc("angular.svg"),
-        name: "Angular"
+        url: "https://angular.io/docs"
     },
     REACT: {
+        name: "React",
         src: getTechnologySrc("react.svg"),
-        name: "React"
+        url: "https://reactjs.org/docs"
     },
     REDUX: {
+        name: "Redux",
         src: getTechnologySrc("redux.svg"),
-        name: "Redux"
+        url: "https://redux.js.org"
     },
     MATERIAL_UI: {
+        name: "material ui",
         src: getTechnologySrc("material-ui.png"),
-        name: "material ui"
+        url: "https://mui.com"
     },
-    CSS_MODULES: {
-        src: getTechnologySrc("css-modules.png"),
-        name: "CSS Modules"
-    },
+    // CSS_MODULES: {
+    //     name: "CSS Modules",
+    //     src: getTechnologySrc("css-modules.png"),
+    //     url: ""
+    // },
     MONGO_DB: {
+        name: "MongoDB",
         src: getTechnologySrc("mongodb.jpg"),
-        name: "MongoDB"
+        url: "https://www.mongodb.com/docs/"
     },
     JQUERY: {
+        name: "jQuery",
         src: getTechnologySrc("jquery.png"),
-        name: "jQuery"
+        url: "https://api.jquery.com"
     },
     DOCKER: {
+        name: "Docker",
         src: getTechnologySrc("docker.svg"),
-        name: "Docker"
+        url: "https://docs.docker.com"
     },
     KUBERNETES: {
+        name: "Kubernetes",
         src: getTechnologySrc("kubernetes.png"),
-        name: "Kubernetes"
+        url: "https://kubernetes.io"
     }
 };

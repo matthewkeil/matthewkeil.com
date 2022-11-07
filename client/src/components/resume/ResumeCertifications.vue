@@ -1,17 +1,19 @@
 <template>
     <section class="main-section certs">
         <h2>Certifications</h2>
-        <ul class="certifications">
-            <li
-                v-for="({ name, imgSrc, url }, key) in this.certifications"
-                :key="key"
-            >
-                <a :href="url" class="certification">
-                    <img :src="imgSrc" />
-                    <span>{{ name }}</span>
-                </a>
-            </li>
-        </ul>
+        <div class="main-content">
+            <ul class="certifications">
+                <li
+                    v-for="({ name, imgSrc, url }, key) in this.certifications"
+                    :key="key"
+                >
+                    <a :href="url" class="certification">
+                        <img :src="imgSrc" />
+                        <span class="pre-formatted">{{ name }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </section>
 </template>
 
@@ -20,8 +22,10 @@
 .certifications {
     display: flex;
     flex-direction: row;
-    height: 5rem;
+    justify-content: space-around;
     padding-left: 1rem;
+    padding-top: 0.1rem;
+    margin-bottom: -0.2rem;
 }
 
 .certification {
@@ -31,8 +35,9 @@
 }
 
 .certification span {
-    padding: 0.3rem;
+    padding: 0.4rem;
     display: flex;
+    text-align: center;
     align-items: center;
     font-size: 0.7rem;
 }
@@ -42,9 +47,22 @@
     height: 4rem;
 }
 
+.pre-formatted {
+    white-space: pre;
+}
+
 @media screen and (max-width: 810px) {
     p {
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .certifications {
+        padding-left: 0;
+    }
+    .certification {
+        flex-direction: column;
     }
 }
 </style>

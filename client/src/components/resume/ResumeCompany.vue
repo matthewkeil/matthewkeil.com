@@ -1,6 +1,6 @@
 <template>
     <div class="company">
-        <h4>{{ this.company.name }}</h4>
+        <h4 class="company-name">{{ this.company.name }}</h4>
 
         <ul :v-if="hasSkills" :class="{ 'skills': hasSkills }">
             <li v-for="(skill, key) in this.company.skills" :key="key">
@@ -57,11 +57,11 @@
     position: relative;
 
     h4 {
-        padding-bottom: 0.1rem;
+        padding-bottom: 0.2rem;
     }
 
     .role {
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.5rem;
         &:last-of-type {
             padding-bottom: 0;
         }

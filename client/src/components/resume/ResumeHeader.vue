@@ -25,7 +25,7 @@
 
 header {
     width: 100%;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.6rem;
     text-align: center;
     color: rgb(15, 36, 62);
 }
@@ -51,6 +51,7 @@ img {
 
 .row {
     width: 100%;
+    padding-top: 0.1rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -86,9 +87,9 @@ img {
             transform: translate(-60%, $image-height + 3px);
         }
 
-        // &:nth-of-type(2)::after {
-        //     transform: translate(-65%, -110%);
-        // }
+        &:nth-of-type(2)::after {
+            padding-left: 0.9rem;
+        }
     }
 }
 

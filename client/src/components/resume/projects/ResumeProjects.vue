@@ -1,20 +1,25 @@
 <template>
     <section class="main-section">
-        <h2>{{this.title}}</h2>
-        <ResumeProject
-            v-for="(project, key) in this.projects"
-            :key="key"
-            class="main-content"
-            :project="project"
-        />
+        <h2>{{ this.title }}</h2>
+        <div class="main-content">
+            <ResumeProject
+                v-for="(project, key) in this.projects"
+                :key="key"
+                :project="project"
+                class="project"
+            />
+        </div>
     </section>
 </template>
 
 <style lang="scss" scoped>
 @import "../resumeStyles";
 
-.main-content:last-of-type {
+.project {
     padding-bottom: 1rem;
+}
+.project:last-of-type {
+    padding-bottom: 0.3rem;
 }
 </style>
 

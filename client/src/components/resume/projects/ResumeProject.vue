@@ -1,9 +1,13 @@
 <template>
     <div class="project-container">
-        <img :src="this.project.hero.src" :alt="this.project.hero.alt" />
+        <a :href="this.project.hostedAt">
+            <img :src="this.project.hero.src" :alt="this.project.hero.alt" />
+        </a>
         <div>
             <h3>
-                <a :href="this.project.hostedAt">{{ this.project.title }}</a>
+                <a class="print-url" :href="this.project.hostedAt">{{
+                    this.project.title
+                }}</a>
             </h3>
             <div v-if="this.project.multiRepo">
                 <ul
@@ -46,7 +50,7 @@
     display: flex;
     flex-direction: row;
 
-    > img {
+    img {
         max-width: 3rem;
         max-height: 3rem;
         margin-right: 1.5rem;
@@ -63,6 +67,12 @@
 
     li {
         font-size: 0.8rem;
+    }
+
+    a {
+        position: relative;
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -87,16 +97,23 @@
 }
 
 @media print {
-    a::after {
-        display: inline;
+    .print-url::after {
+        position: relative;
         content: attr(href);
         font-size: 0.7rem;
-        padding-left: 1rem;
         text-decoration: none;
     }
 }
 
 @media screen and (max-width: 480px) {
+    .project-container {
+        img {
+            max-width: 2rem;
+            max-height: 2rem;
+            margin-right: 0.7rem;
+        }
+    }
+
     article {
         padding-left: 0.1rem !important;
         padding-top: 1.5rem;
